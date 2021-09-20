@@ -4,11 +4,11 @@ Aljabar Linier dan Geometri
 Kelompok 39  
 2021  
   
-**Matrix Calculator** adalah kalkulator yang dapat digunakan untuk melakukan perhitungan yang melibatkan matriks.  
+**Matrix Calculator** is a calculator that can be used to execute calculations involving matrices.  
   
-Operasi yang didukung:
-1. Sistem persamaan Linier
-2. Determinan matriks
-3. Matriks balikan
-4. Interpolasi polinomial
-5. Regresi linier berganda
+Supported operations:
+1. System of linear equations
+2. Determinant of matrix
+3. Inverse of matrix
+4. Polynomial interpolation
+5. Multiple linear regression
