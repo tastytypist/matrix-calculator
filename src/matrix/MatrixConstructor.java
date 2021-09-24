@@ -3,8 +3,8 @@ package matrix;
 public class MatrixConstructor {
 
     public float[][] contents;
-    int row_size;
-    int column_size;
+    public int row_size;
+    public int column_size;
 
     public static MatrixConstructor createMatrix(int row, int column) {
         MatrixConstructor matrix = new MatrixConstructor();
