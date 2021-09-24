@@ -131,7 +131,11 @@ class Matrix {
         int i;
         Matrix mCpy;
         float[] det = new float[1];
-        if (zeroRowIdx(m) != -1) {
+        i = 0;
+        while ((i < m.row) && !isZeroRow(m, i)) {
+            i++;
+        }
+        if (i < m.row) { // terdapat baris yang semua elemennya bernilai nol
             det[0] = 0;
         }
         else { 
@@ -148,29 +152,24 @@ class Matrix {
         return det[0];
     }
 
-    static int zeroRowIdx(Matrix m){
-        // mengembalikan indeks baris yang semua elemennya bernilai 0
-        int i, j;
-        boolean next_row;
+    static boolean isZeroRow (Matrix m, int i) {
+        // mengembalikan true jika baris i semua elemennya bernilai 0
+        int j;
+        j = 0;
+        while ((j < m.col) && (m.contents[i][j] == 0)) {
+            j++;
+        }
+        return (j == m.col);
+    }
+
+    static boolean isZeroCol (Matrix m, int j) {
+        // mengembalikan true jika kolom j semua elemennya bernilai nol
+        int i;
         i = 0;
-        next_row = true;
-        while ((i < m.row) && next_row) {
-            j = 0;
-            while ((j < m.col) && (m.contents[i][j]) == 0) {
-                j++;
-            }
-            if (j == m.col) {
-                // tidak ada baris yang semua elemennya bernilai nol
-                next_row = false;
-            }
-            else {
-                i++;
-            }
+        while ((i < m.row) && (m.contents[i][j] == 0)) {
+            i++;
         }
-        if (i == m.row) {
-            i = -1;
-        }
-        return i;
+        return (i == m.row);
     }
 
     static Matrix copyMtr (Matrix m) {
@@ -294,8 +293,90 @@ class Matrix {
 	     else System.out.println("Unavailable SPL");
 	 }
 	 
+    static void sortRow (Matrix m) {
+        // mengurutkan baris berdasarkan jumlah leading zero dari yang terkecil hingga terbesar
+        int i, j, prevZero;
+        for (i = 0; i < m.row - 1; ++i) {
+            j = i + 1;
+            prevZero = countZero(m, i);
+            while (j < m.row) {
+                if (countZero(m, j) < prevZero) {
+                    prevZero = countZero(m, j);
+                    swapRow(m, i, j);
+                }
+                j++;
+            }
+        }
+    }
 	 
-	 
+	static void gaussElim (Matrix m) {
+        // melakukan eliminasi gauss pada matriks m
+        // hasil akhir berupa matriks eselon
+        // matriks tidak harus berupa matriks persegi
+        int i, j, n, k, nextRow;
+        float c;
+        sortRow(m);
+        j = 0;
+        nextRow = 0;
+        while (j < m.col) {
+            if (!isZeroCol(m, j)) {
+                i = nextRow;
+                // mencari baris pertama yang memiliki elemen tidak nol pada kolom j
+                while ((i < m.row) && (m.contents[i][j] == 0)) {
+                    i++;
+                }
+                if (i < m.row) {
+                    for (n = i + 1; n < m.row; ++n) {
+                        c = m.contents[n][j]/m.contents[i][j];
+                        for (k = 0; k < m.col; ++k) {
+                            m.contents[n][k]  -= c * m.contents[i][k];
+                        }
+                    }
+                    sortRow(m);
+                    nextRow++;
+                }
+            }
+            j++;
+        }
+        for (i = 0; i < m.row; ++i) {
+            // mencari indeks kolom pertama pada baris yang tidak bernilai nol
+            j = i;
+            while ((j < m.col) && (m.contents[i][j] == 0)) {
+                j++;
+            }
+            if (j < m.col) {
+                c = m.contents[i][j];
+                for (k = 0; k < m.col; ++k) {
+                    m.contents[i][k] /= c;
+                    if (m.contents[i][k] == -0) {
+                        m.contents[i][k] = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    static void gaussJordanElim (Matrix m) {
+        int i, j, k, n;
+        float c;
+        gaussElim(m);
+        i = m.row - 1;
+        while (i > 0) {
+            if (!isZeroRow(m, i)) {
+                // cari leading one dalam tiap barisnya
+                j = countZero(m, i);
+                if (j < m.col) {
+                    for (n = i - 1; n >= 0; --n) {
+                        c = m.contents[n][j]/m.contents[i][j];
+                        for (k = 0; k < m.col; ++k) {
+                            m.contents[n][k] -= c * m.contents[i][k];
+                        }
+                    }
+                }
+            }
+            --i;
+        }
+    }
 	 
 
     public static void main(String[] args) {
