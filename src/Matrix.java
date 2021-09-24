@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class Matrix {
+class Matrix {
     float[][] contents;
     int row;
     int col;
@@ -58,6 +58,10 @@ public class Matrix {
             }
         }   
         return count_zero;
+    }
+    
+    static boolean isSquare(Matrix m) {
+    	return (m.row == m.col);
     }
 
     static int rowtoSwap (Matrix m, int i) {
@@ -181,7 +185,121 @@ public class Matrix {
         return mCpy;
     }
 
+    static Matrix signCofactorFunction(Matrix main) {
+        Matrix signCofactor = createMtr(main.row, main.col);
+        for (int x = 0; x < main.row; x++) {
+            for (int y = 0; y < main.col; y++) {
+                if (x % 2 != 0 && y % 2 == 0) {
+                    signCofactor.contents[x][y] = -main.contents[x][y];
+                } else if (x % 2 != 0 && y % 2 != 0) {
+                    signCofactor.contents[x][y] = (main.contents[x][y]);
+                } else if (x % 2 == 0 && y % 2 != 0) {
+                    signCofactor.contents[x][y] = -main.contents[x][y];
+                } else if (x % 2 == 0 && y % 2 == 0) {
+                    signCofactor.contents[x][y] = (main.contents[x][y]);
+                }
+            }
+        }
+
+        return signCofactor;
+    }
+
+    static Matrix CofactorFunction(Matrix main) {
+        Matrix coFactor = createMtr(main.row, main.col);
+        for (int x = 0; x < main.row; x++) {
+            for (int y = 0; y < main.col; y++) {
+                Matrix sementara = createMtr(main.row - 1, main.col - 1);
+                int rowCount = 0;
+                int colCount = 0;
+                for (int a = 0; a < main.row; a++) {
+                    for (int b = 0; b < main.col; b++) {
+                        if (b == 0) {
+                            colCount = 0;
+                        }
+                        if (a != x && b != y) {
+                            // System.out.printf("a = %d\n", a);
+                            // System.out.printf("b = %d\n", b);
+                            // System.out.printf("rowCount = %d\n", rowCount);
+                            // System.out.printf("colCount = %d\n", colCount);
+                            sementara.contents[rowCount][colCount] = main.contents[a][b];
+                            colCount++;
+                            if (colCount == main.col - 1) {
+                                rowCount++;
+                            } 
+                        }
+                    }
+                }
+                coFactor.contents[x][y] = determinant(sementara);
+            }
+        }
+        return coFactor;
+    }
+
+    static Matrix adJointFunction(Matrix main) {
+        Matrix adJoint = createMtr(main.row, main.col);
+        for (int x = 0; x < main.row; x++) {
+            for (int y = 0; y < main.col; y++) {
+                adJoint.contents[x][y] = main.contents[y][x];
+            }
+        }
+
+        return adJoint;
+    }
+    
+    static void inverseFunction(Matrix main, Matrix inverse) {
+    	// metode inverse dengan adjoint
+    	Matrix hasilAdj = adJointFunction(signCofactorFunction(CofactorFunction(main)));
+    	float det = determinant(main);
+    	if (det != 0) {
+	    	for (int x = 0; x < main.row; x++) {
+	    		for (int y = 0; y < main.col; y++) {
+	    			inverse.contents[x][y] = (1/det)* hasilAdj.contents[x][y];
+	    		}
+	    	}
+	    }
+    	else  System.out.println("Does not have an inverse.");
+    }
+    
+	public static void identity(Matrix m, Matrix mIdn) {
+		if (m.row == m.col) {
+			for (int i = 0; i < mIdn.row; i++) {
+				for (int j = 0; j < mIdn.col; j++){
+					if (i == j) mIdn.contents[i][j] = 1;
+					else mIdn.contents[i][j] = 0;
+				}
+			}
+		}
+		else System.out.println("Can't make an identity matrix");
+	}
+		
+	 public static void crammer(Matrix m) {
+	 if (m.col  == m.row + 1) {
+		 Matrix mCpy;
+		 mCpy = copyMtr(m);
+		 float D = 1;
+		 D = determinant(m);
+		 if (D == 0) {//handle if main determinant is 0
+		   System.out.println("Determinant of the main matrix is zero. This means that the system of linear equations is either inconsistent or has infinitely many solutions. Gauss-Jordan elimination method will help get the complete answer.");
+		 }
+		 else {
+		   for (int a = 0; a < m.col-1; a++) {
+			   mCpy = copyMtr(m);
+			   for (int b = 0; b < m.row; b++) {			   
+				   mCpy.contents[b][a] = m.contents[b][mCpy.col-1];
+			   } 
+			   System.out.printf("x%d = %.3f\n",(a+1), determinant(mCpy)/D);
+		   }
+	   }
+	 }
+	     else System.out.println("Unavailable SPL");
+	 }
+	 
+	 
+	 
+	 
+
     public static void main(String[] args) {
+    	//hanya untuk memeriksa
         Scanner sc = new Scanner(System.in);
         System.out.println("Masukkan jumlah baris");
         int a = sc.nextInt();
@@ -196,6 +314,18 @@ public class Matrix {
         System.out.println();
         float det = determinant(m1);
         System.out.printf("det(m1) = %.2f\n", det);
+        System.out.println("\nCoFactor Functions");
+        Matrix hasilCoFactor = signCofactorFunction(CofactorFunction(m1));
+        displayMtr(hasilCoFactor);
+        System.out.println("\nAdjoint Matrix");
+        displayMtr(adJointFunction(hasilCoFactor));
+        System.out.println("\nInverse Matrix");
+        inverseFunction(m1,m2);
+        displayMtr(m2);
+        System.out.println("\nChange m2 to identity matrix");
+        identity(m1,m2);
+        displayMtr(m2);
         sc.close();
     }
 }
+
