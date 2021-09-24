@@ -1,5 +1,6 @@
+package matrix;
+
 import java.util.Scanner;
-import java.lang.Math;
 
 class Matrix {
     float[][] contents;
@@ -394,9 +395,9 @@ class Matrix {
         System.out.println("\nCoFactor Functions");
         Matrix hasilCoFactor = signCofactorFunction(CofactorFunction(m1));
         displayMtr(hasilCoFactor);
-        System.out.println("\nAdjoint Matrix");
+        System.out.println("\nAdjoint matrix.Matrix");
         displayMtr(adJointFunction(hasilCoFactor));
-        System.out.println("\nInverse Matrix");
+        System.out.println("\nInverse matrix.Matrix");
         inverseFunction(m1,m2);
         displayMtr(m2);
         System.out.println("\nChange m2 to identity matrix");
