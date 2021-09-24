@@ -316,9 +316,8 @@ class Matrix {
         int i, j, n, k, nextRow;
         float c;
         sortRow(m);
-        j = 0;
         nextRow = 0;
-        while (j < m.col) {
+        for (j = 0; j < m.col; ++j) {
             if (!isZeroCol(m, j)) {
                 i = nextRow;
                 // mencari baris pertama yang memiliki elemen tidak nol pada kolom j
@@ -336,7 +335,6 @@ class Matrix {
                     nextRow++;
                 }
             }
-            j++;
         }
         for (i = 0; i < m.row; ++i) {
             // mencari indeks kolom pertama pada baris yang tidak bernilai nol
@@ -360,8 +358,7 @@ class Matrix {
         int i, j, k, n;
         float c;
         gaussElim(m);
-        i = m.row - 1;
-        while (i > 0) {
+        for (i = m.row - 1; i > 0; --i) {
             if (!isZeroRow(m, i)) {
                 // cari leading one dalam tiap barisnya
                 j = countZero(m, i);
@@ -374,7 +371,6 @@ class Matrix {
                     }
                 }
             }
-            --i;
         }
     }
 	 
