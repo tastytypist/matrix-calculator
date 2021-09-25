@@ -375,7 +375,65 @@ class Matrix {
         }
     }
 	 
-
+    static String[] spl (Matrix m) {
+        // Menerima matriks augmented dan mengembalikan hasil spl dalam bentuk array of strings
+        // Mengembalikan array kosong jika persamaan tidak memiliki solusi
+        int i, j, k;
+        String[] res = new String[m.col - 1]; // kontainer untuk menyimpan hasil spl dalam bentuk string
+        String temp;
+        gaussJordanElim(m);
+        i = m.row - 1;
+        while ((i >= 0) && (countZero(m, i) != m.col - 1)) {
+            i--;
+        }
+        if (i >= 0) {
+            // Persamaan tidak memiliki solusi
+            res = new String[0];
+        }
+        else {
+            for (i = 0; i < res.length; ++i) {
+                res[i] = "free"; // Inisialisasi nilai hasil
+            }
+            for (i = 0; i < m.row; ++i) {
+                j = countZero(m, i);
+                if (j < m.col - 1) {
+                    temp = "";
+                    if (m.contents[i][m.col - 1] != 0) {
+                        temp += String.format("%.2f", m.contents[i][m.col - 1]) + " ";
+                    }
+                    for (k = m.col - 2; k > j; --k) {
+                        if (m.contents[i][k] == 1) {
+                            temp += "- x" + Integer.toString(k + 1) + " "; 
+                        }
+                        else if (m.contents[i][k] == -1) {
+                            if (temp != "") {
+                                temp += "+ ";
+                            }
+                            temp += "x" + Integer.toString(k + 1) + " ";
+                        }
+                        else if (m.contents[i][k] != 0) {
+                            if (m.contents[i][k] * -1 < 0) {
+                                temp += String.format("%.2f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
+                            }
+                            else {
+                                if (temp != "") {
+                                    temp += "+ ";
+                                }
+                                temp += String.format("%.2f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
+                            }
+                        }
+                    }
+                    if (temp != "") {
+                        res[j] = temp;
+                    }
+                    else {
+                        res[j] = "0.0";
+                    }
+                }
+            }
+        }
+        return res;
+    }
     public static void main(String[] args) {
     	//hanya untuk memeriksa
         Scanner sc = new Scanner(System.in);
