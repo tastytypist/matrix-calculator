@@ -22,6 +22,7 @@ public class MatrixTerminal {
                 matrix.contents[i][j] = element;
             }
         }
+        input.close();
 
         return matrix;
     }
