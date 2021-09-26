@@ -434,6 +434,54 @@ class Matrix {
         }
         return res;
     }
+
+    static void inversegauss (Matrix m){
+        // inverse dengan metode gauss elimination
+        // periska jika matrix bisa diinverse
+        if (isSquare(m)){
+            Matrix matrixinver,mtrxidn;
+            matrixinver = createMtr(m.row, 2*m.col);
+            mtrxidn = identity(m);
+            // membuat matriks untuk proses eliminasi gauss jordon
+            for (int i=0; i<matrixinver.row; i++){
+                for (int j=0; j<matrixinver.col; j++){
+                    if (i < m.row && j < m.col){
+                        matrixinver.contents[i][j] = m.contents[i][j];
+                    }
+                    else {
+                        matrixinver.contents[i][j] = mtrxidn.contents[i][j-m.col];
+                    }
+                }
+            }
+            // diproses
+            gaussJordanElim (matrixinver);
+            // periska jika hasil adalah bentuk inverse
+            int p = 0;
+            boolean flag = true;
+            while (p<m.row && flag){
+                int q = 0;
+                while(q<m.col && flag){
+                    if (matrixinver.contents[p][q] != mtrxidn.contents[p][q]) flag = false;
+                    q++;
+                }
+                p++;
+            }
+            if (flag){
+            // displayMtr(matrixinver); untuk display hasilnya, setelah dilakukan gauss jordon elimination,
+            // direuse matriksidn untuk memasukkan hasil inverse dan display hasilnya juga
+            for (int u = 0; u<matrixinver.row; u++){
+                for (int v = m.col ;v<matrixinver.col; v++){
+                    mtrxidn.contents[u][v-m.col] = matrixinver.contents[u][v];
+                }
+            }
+            displayMtr(mtrxidn); //mengeluarkan matriks inverse.
+            }
+            else System.out.println("Does not have an inverse");
+        }
+        else System.out.println("Does not have an inverse");
+    }
+     
+
     public static void main(String[] args) {
     	//hanya untuk memeriksa
         Scanner sc = new Scanner(System.in);
@@ -450,17 +498,9 @@ class Matrix {
         System.out.println();
         float det = determinant(m1);
         System.out.printf("det(m1) = %.2f\n", det);
-        System.out.println("\nCoFactor Functions");
-        Matrix hasilCoFactor = signCofactorFunction(CofactorFunction(m1));
-        displayMtr(hasilCoFactor);
-        System.out.println("\nAdjoint matrix.Matrix");
-        displayMtr(adJointFunction(hasilCoFactor));
-        System.out.println("\nInverse matrix.Matrix");
-        inverseFunction(m1,m2);
-        displayMtr(m2);
-        System.out.println("\nChange m2 to identity matrix");
-        identity(m1,m2);
-        displayMtr(m2);
+        inversegauss(m1);
+        Matrix m3 = copyMtr(m1);
+        displayMtr(m3);
         sc.close();
     }
 }
