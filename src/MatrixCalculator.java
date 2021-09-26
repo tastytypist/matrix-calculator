@@ -1,13 +1,14 @@
 import java.util.*;
-import inputoutput.*;
+import matrixio.*;
 
 public class MatrixCalculator {
 
+    static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         boolean loop = true;
 
-        System.out.println("Welcome to Matrix Calculator!\n");
+        System.out.println("Welcome to matrix.Matrix Calculator!\n");
         while (loop) {
             mainMenu();
             int action = input.nextInt();
@@ -25,30 +26,30 @@ public class MatrixCalculator {
     }
 
     private static void mainMenu() {
-        System.out.println("""
+        System.out.print("""
                     List of operations:
                     1. System of Linear Equations
-                    2. Determinant of Matrix
-                    3. Inverse of Matrix
+                    2. Determinant of matrix.Matrix
+                    3. Inverse of matrix.Matrix
                     4. Polynomial Interpolation
                     5. Multiple Linear Regression
                     6. Exit
                     
-                    Input choice (number) :""");
+                    Input choice (number) :\040""");
     }
 
     private static void linearMenu() {
-        Scanner input = new Scanner(System.in);
         boolean loop = true;
+
         while (loop) {
-            System.out.println("""
+            System.out.print("""
                     List of methods:
                     1. Gaussian Elimination
                     2. Gauss-Jordan Elimination
-                    3. Matrix Inversion
+                    3. matrix.Matrix Inversion
                     4. Cramer's Rule
                                     
-                    Input method (number) :""");
+                    Input method (number) :\040""");
             int action = input.nextInt();
 
             switch (action) {
@@ -69,15 +70,15 @@ public class MatrixCalculator {
     }
 
     private static void determinantMenu() {
-        Scanner input = new Scanner(System.in);
         boolean loop = true;
+
         while (loop) {
-            System.out.println("""                
+            System.out.print("""
                 List of methods:
                 1. Row Reduction
                 2. Cofactor Expansion
                 
-                Input method (number) :""");
+                Input method (number) :\040""");
             int action = input.nextInt();
 
             switch (action) {
@@ -92,15 +93,15 @@ public class MatrixCalculator {
     }
 
     private static void inverseMenu() {
-        Scanner input = new Scanner(System.in);
         boolean loop = true;
+
         while (loop) {
-            System.out.println("""                
+            System.out.print("""                
                 List of methods:
                 1. Gauss-Jordan Elimination
-                2. Adjoint Matrix
+                2. Adjoint matrix.Matrix
                 
-                Input method (number) :""");
+                Input method (number) :\040""");
             int action = input.nextInt();
 
             switch (action) {
