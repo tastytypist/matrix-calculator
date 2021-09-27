@@ -22,7 +22,6 @@ public class MatrixTerminal {
                 matrix.contents[i][j] = element;
             }
         }
-        input.close();
 
         return matrix;
     }
@@ -34,8 +33,10 @@ public class MatrixTerminal {
         for (int i = 0; i < row_size; ++i) {
             for (int j = 0; j < column_size; ++j) {
                 System.out.printf("%.2f ", matrix.contents[i][j]);
+                if (i != row_size - 1 && j == column_size - 1) {
+                    System.out.println();
+                }
             }
-            System.out.println();
         }
         System.out.println();
     }
