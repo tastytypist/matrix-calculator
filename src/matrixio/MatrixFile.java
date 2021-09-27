@@ -21,7 +21,7 @@ public class MatrixFile {
         }
 
         try {
-            String file_path = new File(".../test/" + file_name).getCanonicalPath();
+            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
@@ -52,6 +52,7 @@ public class MatrixFile {
         }
         catch (IOException error) {
             System.out.println("File cannot be accessed!");
+            error.printStackTrace();
         }
 
         return matrix;
@@ -59,7 +60,7 @@ public class MatrixFile {
 
     public static void displayMatrixFile(MatrixConstructor matrix) {
         try {
-            String folder_path = new File(".../output/").getCanonicalPath();
+            String folder_path = new File(".\\output\\").getCanonicalPath();
             File folder = new File(folder_path);
             if (!folder.exists()) {
                 if (!folder.mkdir()) {
@@ -77,15 +78,14 @@ public class MatrixFile {
                     file_name = file_name + suffix;
                 }
 
-                String file_path = new File(".../output/" + file_name).getCanonicalPath();
+                String file_path = new File(".\\output\\" + file_name).getCanonicalPath();
                 file = new File(file_path);
-                if (!file.createNewFile()) {
+                if (file.createNewFile()) {
                     break;
                 }
 
                 System.out.println("File already exist! Please try again.");
             }
-            input.close();
 
             PrintWriter matrix_writer = new PrintWriter(file);
             int row_size = matrix.row_size;
@@ -93,11 +93,15 @@ public class MatrixFile {
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
-                    matrix_writer.printf("%.2f ", matrix.contents[i][j]);
+                    matrix_writer.printf("%.2f", matrix.contents[i][j]);
+                    if (j != column_size - 1) {
+                        matrix_writer.print(" ");
+                    }
+                    if (i != row_size - 1 && j == column_size - 1) {
+                        matrix_writer.println();
+                    }
                 }
-                matrix_writer.println();
             }
-            matrix_writer.println();
 
             matrix_writer.close();
         }
