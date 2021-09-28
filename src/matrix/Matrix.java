@@ -440,8 +440,9 @@ class Matrix {
         // periska jika matrix bisa diinverse
         if (isSquare(m)){
             Matrix matrixinver,mtrxidn;
+            mtrxidn = createMtr(m.row, m.col);
             matrixinver = createMtr(m.row, 2*m.col);
-            mtrxidn = identity(m);
+            identity(m, mtrxidn);
             // membuat matriks untuk proses eliminasi gauss jordon
             for (int i=0; i<matrixinver.row; i++){
                 for (int j=0; j<matrixinver.col; j++){
