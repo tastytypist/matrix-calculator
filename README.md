@@ -12,3 +12,21 @@ Supported operations:
 3. Inverse of matrix
 4. Polynomial interpolation
 5. Multiple linear regression
+
+## Project Structure
+```
+matrixcalculator
+├── bin                          # Contains java bytecode (.class) 
+├── doc                          # Contains documentation in the form of a report
+├── output                       # Contains results created by the calculator
+├── src                          # Contains source files (.java)
+│   ├── matrix                   # Contains matrix operations
+│   │   ├── Matrix               # Operations for matrix determinant, matrix inverse, and system of linear equations
+│   │   ├── MatrixInterpolation  # Operations for polynomial interpolation
+│   │   └── MatrixRegression     # Operation for multiple linear regression
+│   ├── matrixio                 # Contains methods handling matrix input and output
+│   │   ├── MatrixFile           # Matrix input and output from a file
+│   │   └── MatrixTerminal       # Matrix input and output from the terminal
+│   └── MatrixCalculator         # Contains the main program
+└── test                         # Contains test cases
+```
