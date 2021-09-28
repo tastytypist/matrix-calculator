@@ -2,12 +2,12 @@ package matrix;
 
 import java.util.Scanner;
 
-class Matrix {
-    float[][] contents;
-    int row;
-    int col;
+public class Matrix {
+    public float[][] contents;
+    public int row;
+    public int col;
 
-    static Matrix createMtr (int a, int b) {
+    public static Matrix createMtr (int a, int b) {
         // membuat matriks kosong berukuran a x b
         Matrix m = new Matrix();
         m.contents = new float[a][b];
@@ -481,28 +481,28 @@ class Matrix {
         }
         else System.out.println("Does not have an inverse");
     }
-     
 
-    public static void main(String[] args) {
-    	//hanya untuk memeriksa
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Masukkan jumlah baris");
-        int a = sc.nextInt();
-        System.out.println("Masukkan jumlah kolom");
-        int b = sc.nextInt();
-        Matrix m1 = createMtr(a, b);
-        readMtr(m1);
-        Matrix m2 = copyMtr(m1);
-        float[] xx = new float[1];
-        segitigaAtas(m2, xx);
-        displayMtr(m2);
-        System.out.println();
-        float det = determinant(m1);
-        System.out.printf("det(m1) = %.2f\n", det);
-        inversegauss(m1);
-        Matrix m3 = copyMtr(m1);
-        displayMtr(m3);
-        sc.close();
-    }
+
+//    public static void main(String[] args) {
+//    	//hanya untuk memeriksa
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Masukkan jumlah baris");
+//        int a = sc.nextInt();
+//        System.out.println("Masukkan jumlah kolom");
+//        int b = sc.nextInt();
+//        Matrix m1 = createMtr(a, b);
+//        readMtr(m1);
+//        Matrix m2 = copyMtr(m1);
+//        float[] xx = new float[1];
+//        segitigaAtas(m2, xx);
+//        displayMtr(m2);
+//        System.out.println();
+//        float det = determinant(m1);
+//        System.out.printf("det(m1) = %.2f\n", det);
+//        inversegauss(m1);
+//        Matrix m3 = copyMtr(m1);
+//        displayMtr(m3);
+//        sc.close();
+//    }
 }
 
