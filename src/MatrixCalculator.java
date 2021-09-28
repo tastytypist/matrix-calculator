@@ -1,4 +1,6 @@
 import java.util.*;
+
+import matrix.*;
 import matrixio.*;
 
 public class MatrixCalculator {
@@ -116,10 +118,78 @@ public class MatrixCalculator {
     }
 
     private static void polynomialMenu() {
-        // pass
+        String result = "", function = "";
+        int input_choice = inputMenu();
+
+        switch (input_choice) {
+            case 1 -> {
+                Object[] matrix_pair = MatrixTerminal.readInterpolationTerminal();
+                Matrix point_matrix = (Matrix) matrix_pair[0];
+                float num = (float) matrix_pair[1];
+
+                Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
+                result = (String) result_pair[0];
+                function = (String) result_pair[1];
+            }
+            case 2 -> {
+                Object[] matrix_pair = MatrixFile.readInterpolationFile();
+                Matrix point_matrix = (Matrix) matrix_pair[0];
+                float num = (float) matrix_pair[1];
+
+                Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
+                result = (String) result_pair[0];
+                function = (String) result_pair[1];
+            }
+        }
+
+        int output_choice = outputMenu();
+
+        switch (output_choice) {
+            case 1 -> MatrixTerminal.displayInterpolationTerminal(result, function);
+            case 2 -> MatrixFile.displayInterpolationFile(result, function);
+        }
     }
 
     private static void regressionMenu() {
-        // pass
+        int input_choice = inputMenu();
+        int output_choice = outputMenu();
+    }
+
+    public static int inputMenu() {
+        while (true) {
+            System.out.print("""
+                    Choice of input:
+                    1. Terminal
+                    2. File
+                    
+                    Input choice (number):\040""");
+            int choice = input.nextInt();
+
+            switch (choice) {
+                case 1, 2 -> {
+                    return choice;
+                }
+                default -> System.out.println("Masukan tidak valid. Silakan ulangi!");
+            }
+        }
+    }
+
+    public static int outputMenu() {
+        while (true) {
+            System.out.print("""
+                    Choice of output:
+                    1. Terminal
+                    2. File
+                    
+                    Input choice (number):\040""");
+            int choice = input.nextInt();
+
+            switch (choice) {
+                case 1, 2 -> {
+                    return choice;
+                }
+                default -> System.out.println("Masukan tidak valid. Silakan ulangi!");
+            }
+        }
     }
 }
