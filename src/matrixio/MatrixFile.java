@@ -153,15 +153,14 @@ public class MatrixFile {
             file_name = file_name + suffix;
         }
 
-        float[] point_list = new float[0];
+        Matrix point_list = new Matrix();
         float[] estimate_list = new float[0];
-        float result_constant = 0;
+        int var_count = 0;
         try {
             String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
-            int var_count = 0;
             while (file_input.hasNextLine()) {
                 file_input.nextLine();
                 var_count += 1;
@@ -169,15 +168,16 @@ public class MatrixFile {
             var_count = (var_count - 1) / 2;
             file_input.close();
 
-            point_list = new float[var_count];
+            int row_size = var_count;
+            int column_size = var_count + 1;
             estimate_list = new float[var_count];
             Scanner value_input = new Scanner(file);
 
-            for (int i = 0; i < var_count; ++i) {
-                point_list[i] = value_input.nextFloat();
+            for (int i = 0; i < row_size; ++i) {
+                for (int j = 0; j < column_size; ++j) {
+                    point_list.contents[i][j] = value_input.nextFloat();
+                }
             }
-
-            result_constant = value_input.nextFloat();
 
             for (int i = 0; i < var_count; ++i) {
                 estimate_list[i] = value_input.nextFloat();
@@ -188,7 +188,7 @@ public class MatrixFile {
             error.printStackTrace();
         }
 
-        return new Object[] {point_list, result_constant, estimate_list};
+        return new Object[] {point_list, estimate_list};
     }
 
     public static void displayRegressionFile(float estimate_result) {

@@ -68,16 +68,16 @@ public class MatrixTerminal {
     public static Object[] readRegressionTerminal() {
         System.out.print("Input the number of variables: ");
         int var_count = input.nextInt();
+        int column_size = var_count + 1;
 
-        float[] point_list = new float[var_count];
+        Matrix point_list = Matrix.createMtr(var_count, column_size);
         System.out.println("Input values: ");
         for (int i = 0; i < var_count; ++i) {
-            float element = input.nextFloat();
-            point_list[i] = element;
+            for (int j = 0; j < column_size; ++j) {
+                float element = input.nextFloat();
+                point_list.contents[i][j] = element;
+            }
         }
-
-        System.out.print("Input the result constant: ");
-        float result_constant = input.nextFloat();
 
         float[] estimate_list = new float[var_count];
         System.out.println("Input values to be estimated: ");
@@ -86,7 +86,7 @@ public class MatrixTerminal {
             estimate_list[i] = element;
         }
 
-        return new Object[] {point_list, result_constant, estimate_list};
+        return new Object[] {point_list, estimate_list};
     }
 
     public static void displayRegressionTerminal(float estimate_result) {
