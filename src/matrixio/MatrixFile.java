@@ -1,16 +1,16 @@
 package matrixio;
 
-import matrix.MatrixConstructor;
-
 import java.io.*;
 import java.util.*;
+
+import matrix.*;
 
 public class MatrixFile {
 
     static Scanner input = new Scanner(System.in);
 
-    public static MatrixConstructor readMatrixFile() {
-        MatrixConstructor matrix = new MatrixConstructor();
+    public static Matrix readMatrixFile() {
+        Matrix matrix = new Matrix();
 
         System.out.print("Input file name: ");
         String file_name = input.next();
@@ -40,7 +40,7 @@ public class MatrixFile {
             }
             file_input.close();
 
-            matrix = MatrixConstructor.createMatrix(row_size, column_size);
+            matrix = Matrix.createMtr(row_size, column_size);
             Scanner matrix_input = new Scanner(file);
 
             for (int i = 0; i < row_size; ++i) {
@@ -58,38 +58,13 @@ public class MatrixFile {
         return matrix;
     }
 
-    public static void displayMatrixFile(MatrixConstructor matrix) {
+    public static void displayMatrixFile(Matrix matrix) {
         try {
-            String folder_path = new File(".\\output\\").getCanonicalPath();
-            File folder = new File(folder_path);
-            if (!folder.exists()) {
-                if (!folder.mkdir()) {
-                    throw new IOException();
-                }
-            }
-
-            File file;
-            while (true) {
-                System.out.print("Input file name: ");
-                String file_name = input.next();
-                String suffix = ".txt";
-
-                if (!file_name.endsWith(suffix)) {
-                    file_name = file_name + suffix;
-                }
-
-                String file_path = new File(".\\output\\" + file_name).getCanonicalPath();
-                file = new File(file_path);
-                if (file.createNewFile()) {
-                    break;
-                }
-
-                System.out.println("File already exist! Please try again.");
-            }
+            File file = ensureDirectoriesExist();
 
             PrintWriter matrix_writer = new PrintWriter(file);
-            int row_size = matrix.row_size;
-            int column_size = matrix.column_size;
+            int row_size = matrix.row;
+            int column_size = matrix.col;
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
@@ -107,6 +82,96 @@ public class MatrixFile {
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
+            error.printStackTrace();
         }
+    }
+
+    public static Object[] readInterpolationFile() {
+        Matrix matrix = new Matrix();
+
+        System.out.print("Input file name: ");
+        String file_name = input.next();
+        String suffix = ".txt";
+
+        if (!file_name.endsWith(suffix)) {
+            file_name = file_name + suffix;
+        }
+
+        float num = 0;
+        try {
+            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
+            File file = new File(file_path);
+            Scanner file_input = new Scanner(file);
+
+            num = file_input.nextFloat();
+            int row_size = 0;
+            while (file_input.hasNextLine()) {
+                file_input.nextLine();
+                row_size += 1;
+            }
+            file_input.close();
+
+            matrix = Matrix.createMtr(row_size, 2);
+            Scanner matrix_input = new Scanner(file);
+
+            matrix_input.nextLine();
+            for (int i = 0; i < row_size; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    matrix.contents[i][j] = matrix_input.nextFloat();
+                }
+            }
+            matrix_input.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be accessed!");
+            error.printStackTrace();
+        }
+
+        return new Object[] {matrix, num};
+    }
+
+    public static void displayInterpolationFile(String result, String function_result) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter result_writer = new PrintWriter(file);
+            result_writer.println(result);
+            result_writer.println(function_result);
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
+
+    private static File ensureDirectoriesExist() throws IOException {
+        String folder_path = new File(".\\output\\").getCanonicalPath();
+        File folder = new File(folder_path);
+        if (!folder.exists()) {
+            if (!folder.mkdir()) {
+                throw new IOException();
+            }
+        }
+
+        File file;
+        while (true) {
+            System.out.print("Input file name: ");
+            String file_name = input.next();
+            String suffix = ".txt";
+
+            if (!file_name.endsWith(suffix)) {
+                file_name = file_name + suffix;
+            }
+
+            String file_path = new File(".\\output\\" + file_name).getCanonicalPath();
+            file = new File(file_path);
+            if (file.createNewFile()) {
+                break;
+            }
+
+            System.out.println("File already exist! Please try again.");
+        }
+
+        return file;
     }
 }
