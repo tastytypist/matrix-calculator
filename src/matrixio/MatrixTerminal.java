@@ -42,10 +42,10 @@ public class MatrixTerminal {
     }
 
     public static Object[] readInterpolationTerminal() {
+        System.out.print("Input n: ");
+        int num = input.nextInt();
         System.out.print("Input number point: ");
         int point_count = input.nextInt();
-        System.out.print("Input x: ");
-        int num = input.nextInt();
 
         Matrix point_matrix = Matrix.createMtr(point_count, 2);
 
