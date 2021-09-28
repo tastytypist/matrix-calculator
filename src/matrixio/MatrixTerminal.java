@@ -32,7 +32,7 @@ public class MatrixTerminal {
 
         for (int i = 0; i < row_size; ++i) {
             for (int j = 0; j < column_size; ++j) {
-                System.out.printf("%.2f ", matrix.contents[i][j]);
+                System.out.printf("%f ", matrix.contents[i][j]);
                 if (i != row_size - 1 && j == column_size - 1) {
                     System.out.println();
                 }
@@ -63,5 +63,33 @@ public class MatrixTerminal {
     public static void displayInterpolationTerminal(String result, String function_result) {
         System.out.println(result);
         System.out.println(function_result);
+    }
+
+    public static Object[] readRegressionTerminal() {
+        System.out.print("Input the number of variables: ");
+        int var_count = input.nextInt();
+
+        float[] point_list = new float[var_count];
+        System.out.println("Input values: ");
+        for (int i = 0; i < var_count; ++i) {
+            float element = input.nextFloat();
+            point_list[i] = element;
+        }
+
+        System.out.print("Input the result constant: ");
+        float result_constant = input.nextFloat();
+
+        float[] estimate_list = new float[var_count];
+        System.out.println("Input values to be estimated: ");
+        for (int i = 0; i < var_count; ++i) {
+            float element = input.nextFloat();
+            estimate_list[i] = element;
+        }
+
+        return new Object[] {point_list, result_constant, estimate_list};
+    }
+
+    public static void displayRegressionTerminal(float estimate_result) {
+        System.out.printf("Estimation result = %f", estimate_result);
     }
 }

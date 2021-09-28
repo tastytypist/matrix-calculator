@@ -68,7 +68,7 @@ public class MatrixFile {
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
-                    matrix_writer.printf("%.2f", matrix.contents[i][j]);
+                    matrix_writer.printf("%f", matrix.contents[i][j]);
                     if (j != column_size - 1) {
                         matrix_writer.print(" ");
                     }
@@ -137,6 +137,66 @@ public class MatrixFile {
             PrintWriter result_writer = new PrintWriter(file);
             result_writer.println(result);
             result_writer.println(function_result);
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
+
+    public static Object[] readRegressionFile() {
+        System.out.print("Input file name: ");
+        String file_name = input.next();
+        String suffix = ".txt";
+
+        if (!file_name.endsWith(suffix)) {
+            file_name = file_name + suffix;
+        }
+
+        float[] point_list = new float[0];
+        float[] estimate_list = new float[0];
+        float result_constant = 0;
+        try {
+            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
+            File file = new File(file_path);
+            Scanner file_input = new Scanner(file);
+
+            int var_count = 0;
+            while (file_input.hasNextLine()) {
+                file_input.nextLine();
+                var_count += 1;
+            }
+            var_count = (var_count - 1) / 2;
+            file_input.close();
+
+            point_list = new float[var_count];
+            estimate_list = new float[var_count];
+            Scanner value_input = new Scanner(file);
+
+            for (int i = 0; i < var_count; ++i) {
+                point_list[i] = value_input.nextFloat();
+            }
+
+            result_constant = value_input.nextFloat();
+
+            for (int i = 0; i < var_count; ++i) {
+                estimate_list[i] = value_input.nextFloat();
+            }
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be accessed!");
+            error.printStackTrace();
+        }
+
+        return new Object[] {point_list, result_constant, estimate_list};
+    }
+
+    public static void displayRegressionFile(float estimate_result) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter result_writer = new PrintWriter(file);
+            result_writer.printf("Estimation result = %f", estimate_result);
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
