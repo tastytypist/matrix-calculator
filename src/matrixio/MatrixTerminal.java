@@ -56,14 +56,15 @@ public class MatrixTerminal {
         }
 
         System.out.print("Input value to be estimated: ");
-        int num = input.nextInt();
+        float num = input.nextFloat();
 
-        return new Object[] {point_count, num};
+        return new Object[] {point_matrix, num};
     }
 
     public static void displayInterpolationTerminal(String result, String function_result) {
         System.out.println(result);
         System.out.println(function_result);
+        System.out.println();
     }
 
     public static Object[] readRegressionTerminal() {

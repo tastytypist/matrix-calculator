@@ -104,7 +104,7 @@ public class MatrixFile {
             Scanner file_input = new Scanner(file);
 
             num = file_input.nextFloat();
-            int row_size = 0;
+            int row_size = -1;
             while (file_input.hasNextLine()) {
                 file_input.nextLine();
                 row_size += 1;
@@ -135,8 +135,9 @@ public class MatrixFile {
             File file = ensureDirectoriesExist();
 
             PrintWriter result_writer = new PrintWriter(file);
-            result_writer.println(result);
-            result_writer.println(function_result);
+            result_writer.printf("Function = %s\n", result);
+            result_writer.print(function_result);
+            result_writer.close();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
@@ -197,6 +198,7 @@ public class MatrixFile {
 
             PrintWriter result_writer = new PrintWriter(file);
             result_writer.printf("Estimation result = %f", estimate_result);
+            result_writer.close();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");

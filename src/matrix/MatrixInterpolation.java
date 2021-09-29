@@ -15,7 +15,7 @@ public class MatrixInterpolation {
                     poly_system.contents[i][j] = point_matrix.contents[i][1];
                 }
                 else {
-                    poly_system.contents[i][j] = (float) Math.pow(point_matrix.contents[i][0], i);
+                    poly_system.contents[i][j] = (float) Math.pow(point_matrix.contents[i][0], j);
                 }
             }
         }
@@ -26,7 +26,7 @@ public class MatrixInterpolation {
 
         for (int i = 0; i < result_array.length; ++i) {
             result.append(result_array[i]).append("x^").append(i);
-            if (i == row_size - 1) {
+            if (i != row_size - 1) {
                 result.append(" + ");
             }
             func_result += Float.parseFloat(result_array[i]) * (float) Math.pow(num, i);
