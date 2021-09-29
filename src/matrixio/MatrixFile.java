@@ -58,17 +58,17 @@ public class MatrixFile {
         return matrix;
     }
 
-    public static void displayMatrixFile(Matrix matrix) {
+    public static void displayMatrixFile(Matrix m_copy) {
         try {
             File file = ensureDirectoriesExist();
 
             PrintWriter matrix_writer = new PrintWriter(file);
-            int row_size = matrix.row;
-            int column_size = matrix.col;
+            int row_size = m_copy.row;
+            int column_size = m_copy.col;
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
-                    matrix_writer.printf("%f", matrix.contents[i][j]);
+                    matrix_writer.printf("%f", m_copy.contents[i][j]);
                     if (j != column_size - 1) {
                         matrix_writer.print(" ");
                     }
@@ -267,4 +267,32 @@ public class MatrixFile {
             error.printStackTrace();
         }
     }
+
+    public static void displayCrammer(Matrix m) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter crammer_writer = new PrintWriter(file);
+            crammer_writer.println(Matrix.crammer(m));
+            crammer_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
+    public static void displaymatrixbalikan(Matrix m) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter crammer_writer = new PrintWriter(file);
+            crammer_writer.println(Matrix.matriksbalikan(m));
+            crammer_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
 }
+

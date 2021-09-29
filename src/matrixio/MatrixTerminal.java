@@ -1,7 +1,6 @@
 package matrixio;
 
 import java.util.*;
-
 import jdk.tools.jlink.resources.plugins;
 import matrix.*;
 
@@ -28,13 +27,13 @@ public class MatrixTerminal {
         return matrix;
     }
 
-    public static void displayMatrixTerminal(Matrix matrix) {
-        int row_size = matrix.row;
-        int column_size = matrix.col;
+    public static void displayMatrixTerminal(Matrix m_copy) {
+        int row_size = m_copy.row;
+        int column_size = m_copy.col;
 
         for (int i = 0; i < row_size; ++i) {
             for (int j = 0; j < column_size; ++j) {
-                System.out.printf("%f ", matrix.contents[i][j]);
+                System.out.printf("%f ", m_copy.contents[i][j]);
                 if (i != row_size - 1 && j == column_size - 1) {
                     System.out.println();
                 }
