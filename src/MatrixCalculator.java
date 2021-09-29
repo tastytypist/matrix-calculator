@@ -56,20 +56,55 @@ public class MatrixCalculator {
 
             switch (action) {
                 case 1 -> {
-                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    int input_choice = inputMenu();
+                    Matrix m = Matrix.createMtr(0, 0);
+
+                    switch (input_choice) {
+                        case 1 -> m = MatrixTerminal.readMatrixTerminal();
+                        case 2 -> m = MatrixFile.readMatrixFile();
+                    }
+
                     Matrix m_copy = m;
                     Matrix.gaussElim(m_copy);
-                    MatrixTerminal.displayMatrixTerminal(m_copy);
                     String[] spl_result = Matrix.spl(m_copy);
-                    MatrixTerminal.displaySPLResult(spl_result);
+
+                    int output_choice = outputMenu();
+                    switch (output_choice) {
+                        case 1 -> {
+                            MatrixTerminal.displayMatrixTerminal(m_copy);
+                            MatrixTerminal.displaySPLResTerminal(spl_result);
+                        }
+                        case 2 -> {
+                            MatrixFile.displayMatrixFile(m_copy);
+                            MatrixFile.displaySPLResFile(spl_result);
+                        }
+                    }
+                    
                 }
                 case 2 -> {
-                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    int input_choice = inputMenu();
+                    Matrix m = Matrix.createMtr(0, 0);
+
+                    switch (input_choice) {
+                        case 1 -> m = MatrixTerminal.readMatrixTerminal();
+                        case 2 -> m = MatrixFile.readMatrixFile();
+                    }
+
                     Matrix m_copy = m;
                     Matrix.gaussJordanElim(m_copy);
-                    MatrixTerminal.displayMatrixTerminal(m_copy);
                     String[] spl_result = Matrix.spl(m_copy);
-                    MatrixTerminal.displaySPLResult(spl_result);
+
+                    int output_choice = outputMenu();
+                    switch (output_choice) {
+                        case 1 -> {
+                            MatrixTerminal.displayMatrixTerminal(m_copy);
+                            MatrixTerminal.displaySPLResTerminal(spl_result);
+                        }
+                        case 2 -> {
+                            MatrixFile.displayMatrixFile(m_copy);
+                            MatrixFile.displaySPLResFile(spl_result);
+                        }
+                    }                    
                 }
                 case 3 -> {
                     // pass 3
@@ -96,9 +131,21 @@ public class MatrixCalculator {
 
             switch (action) {
                 case 1 -> {
-                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    Matrix m = Matrix.createMtr(0, 0);
+                    int input_choice = inputMenu();
+
+                    switch (input_choice) {
+                        case 1 -> m = MatrixTerminal.readMatrixTerminal();
+                        case 2 -> m = MatrixFile.readMatrixFile();
+                    }
+
                     float det = Matrix.determinant(m);
-                    System.out.printf("Determinant = %f\n", det);
+                    int output_choice = outputMenu();
+
+                    switch (output_choice) {
+                        case 1 -> MatrixTerminal.displayDetTerminal(det);
+                        case 2 -> MatrixFile.displayDetFile(det);
+                    }
                 }
                 case 2 -> {
                     // pass 2
