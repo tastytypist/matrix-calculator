@@ -110,7 +110,18 @@ public class MatrixCalculator {
                     int input_choice = inputMenu();
                     switch (input_choice){
                         case 1 ->{
-
+                            System.out.print("""
+                            =========================
+                            Input Matrix to process the SPL AX = B by turning it into augmented matrix
+                            for example:
+                            2x - 3y = 3
+                            x + 2y = 5
+                            
+                            Augemented matrix form 2X3(row x colomn)
+                            2 -3 3
+                            1 2 5
+                            ==========================
+                            """);
                             
                             Matrix m1 = MatrixTerminal.readMatrixTerminal();
                             int output_choice = outputMenu();
