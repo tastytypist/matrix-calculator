@@ -151,8 +151,33 @@ public class MatrixCalculator {
     }
 
     private static void regressionMenu() {
+        float estimate_result = 0;
         int input_choice = inputMenu();
+
+        switch (input_choice) {
+            case 1 -> {
+                Object[] regression_pair = MatrixTerminal.readRegressionTerminal();
+                Matrix point_list = (Matrix) regression_pair[0];
+                float[] estimate_list = (float[]) regression_pair[1];
+
+                estimate_result = MatrixRegression.calcEstimation(point_list, estimate_list);
+            }
+            case 2 -> {
+                Object[] regression_pair = MatrixFile.readRegressionFile();
+                Matrix point_list = (Matrix) regression_pair[0];
+                float[] estimate_list = (float[]) regression_pair[1];
+
+                estimate_result = MatrixRegression.calcEstimation(point_list, estimate_list);
+
+            }
+        }
+
         int output_choice = outputMenu();
+
+        switch (output_choice) {
+            case 1 -> MatrixTerminal.displayRegressionTerminal(estimate_result);
+            case 2 -> MatrixFile.displayRegressionFile(estimate_result);
+        }
     }
 
     public static int inputMenu() {
