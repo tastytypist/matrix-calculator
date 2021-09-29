@@ -253,4 +253,18 @@ public class MatrixFile {
             error.printStackTrace();
         }
     }
+
+    public static void displayDetFile (float det) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter result_writer = new PrintWriter(file);
+            result_writer.printf("Determinant = %f", det);
+            result_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
 }
