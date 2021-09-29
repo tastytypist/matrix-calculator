@@ -3,7 +3,7 @@ package matrix;
 public class MatrixRegression {
 
     public static float calcEstimation(Matrix point_list, float[] estimate_list) {
-        int row_size = point_list.row + 1;
+        int row_size = point_list.col;
         int column_size = point_list.col + 1;
         Matrix regression_system = Matrix.createMtr(row_size, column_size);
 
@@ -15,18 +15,16 @@ public class MatrixRegression {
                     element = point_list.row;
                 }
                 else if (i == 0) {
-                    for (int k = j - 1; k < column_size - 1; ++k) {
-                        element += point_list.contents[0][k];
+                    for (int k = 0; k < point_list.row; ++k) {
+                        element += point_list.contents[k][j - 1];
                     }
                 }
-                else if (j == 0) {
-                    for (int k = i - 1; k < row_size - 1; ++k) {
-                        element += point_list.contents[k][0];
-                    }
+                else if (i > j) {
+                    element = regression_system.contents[j][i];
                 }
                 else {
-                    for (int k = i - 1; k < row_size - 1; ++k) {
-                        element += point_list.contents[i - 1][k] * point_list.contents[j - 1][k];
+                    for (int k = 0; k < point_list.row; ++k) {
+                        element += point_list.contents[k][i - 1] * point_list.contents[k][j - 1];
                     }
                 }
                 regression_system.contents[i][j] = element;

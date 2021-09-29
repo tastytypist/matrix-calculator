@@ -9,6 +9,7 @@ public class MatrixFile {
 
     static Scanner input = new Scanner(System.in);
 
+    @SuppressWarnings("DuplicatedCode")
     public static Matrix readMatrixFile() {
         Matrix matrix = new Matrix();
 
@@ -145,6 +146,7 @@ public class MatrixFile {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static Object[] readRegressionFile() {
         System.out.print("Input file name: ");
         String file_name = input.next();
@@ -156,22 +158,30 @@ public class MatrixFile {
 
         Matrix point_list = new Matrix();
         float[] estimate_list = new float[0];
-        int var_count = 0;
         try {
             String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
+            int data_count = 0;
+            int var_count = 0;
             while (file_input.hasNextLine()) {
-                file_input.nextLine();
-                var_count += 1;
+                if (data_count == 0) {
+                    String matrix_row = file_input.nextLine();
+                    String[] array_row = matrix_row.split(" ");
+                    var_count = array_row.length;
+                }
+                else {
+                    file_input.nextLine();
+                }
+                data_count += 1;
             }
-            var_count = (var_count - 1) / 2;
             file_input.close();
 
-            int row_size = var_count;
-            int column_size = var_count + 1;
-            estimate_list = new float[var_count];
+            int row_size = data_count - 1;
+            int column_size = var_count;
+            point_list = Matrix.createMtr(row_size, column_size);
+            estimate_list = new float[var_count - 1];
             Scanner value_input = new Scanner(file);
 
             for (int i = 0; i < row_size; ++i) {
@@ -180,7 +190,7 @@ public class MatrixFile {
                 }
             }
 
-            for (int i = 0; i < var_count; ++i) {
+            for (int i = 0; i < var_count - 1; ++i) {
                 estimate_list[i] = value_input.nextFloat();
             }
         }
