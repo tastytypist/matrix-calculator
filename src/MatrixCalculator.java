@@ -55,10 +55,21 @@ public class MatrixCalculator {
             int action = input.nextInt();
 
             switch (action) {
-                case 1 -> // pass 1
-                          loop = false;
+                case 1 -> {
+                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    Matrix m_copy = m;
+                    Matrix.gaussElim(m_copy);
+                    MatrixTerminal.displayMatrixTerminal(m_copy);
+                    String[] spl_result = Matrix.spl(m_copy);
+                    MatrixTerminal.displaySPLResult(spl_result);
+                }
                 case 2 -> {
-                    // pass 2
+                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    Matrix m_copy = m;
+                    Matrix.gaussJordanElim(m_copy);
+                    MatrixTerminal.displayMatrixTerminal(m_copy);
+                    String[] spl_result = Matrix.spl(m_copy);
+                    MatrixTerminal.displaySPLResult(spl_result);
                 }
                 case 3 -> {
                     // pass 3
