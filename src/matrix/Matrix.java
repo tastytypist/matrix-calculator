@@ -96,7 +96,7 @@ public class Matrix {
         }
     }
 
-    static void segitigaAtas (Matrix m, float[] det) {
+    public static void segitigaAtas (Matrix m, float[] det) {
         // Matriks dipastikan adalah matriks persegi
         // menghasilkan matriks segitiga atas
         int i, j, n, k;
@@ -126,7 +126,7 @@ public class Matrix {
         }
     }
 
-    static float determinant (Matrix m) {
+    public static float determinant (Matrix m) {
         // m dipastikan adalah matriks persegi
         // mencari determinan dari matriks
         int i;
@@ -310,7 +310,7 @@ public class Matrix {
         }
     }
 	 
-	static void gaussElim (Matrix m) {
+	public static void gaussElim (Matrix m) {
         // melakukan eliminasi gauss pada matriks m
         // hasil akhir berupa matriks eselon
         // matriks tidak harus berupa matriks persegi
@@ -355,7 +355,7 @@ public class Matrix {
         }
     }
 
-    static void gaussJordanElim (Matrix m) {
+    public static void gaussJordanElim (Matrix m) {
         int i, j, k, n;
         float c;
         gaussElim(m);
@@ -375,7 +375,7 @@ public class Matrix {
         }
     }
 	 
-    static String[] spl (Matrix m) {
+    public static String[] spl (Matrix m) {
         // Menerima matriks augmented dan mengembalikan hasil spl dalam bentuk array of strings
         // Mengembalikan array kosong jika persamaan tidak memiliki solusi
         int i, j, k;
