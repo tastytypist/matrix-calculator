@@ -236,4 +236,21 @@ public class MatrixFile {
 
         return file;
     }
+
+    public static void displaySPLResFile (String[] splRes) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter result_writer = new PrintWriter(file);
+            int i;
+            for (i = 0; i < splRes.length; ++i) {
+                result_writer.printf("x%d = %s\n", i+1, splRes[i]);
+            }
+            result_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
 }
