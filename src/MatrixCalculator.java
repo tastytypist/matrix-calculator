@@ -128,7 +128,7 @@ public class MatrixCalculator {
                 float num = (float) matrix_pair[1];
 
                 Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
-                result = (String) result_pair[0];
+                result = result_pair[0].toString();
                 function = (String) result_pair[1];
             }
             case 2 -> {
@@ -137,7 +137,7 @@ public class MatrixCalculator {
                 float num = (float) matrix_pair[1];
 
                 Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
-                result = (String) result_pair[0];
+                result = result_pair[0].toString();
                 function = (String) result_pair[1];
             }
         }
