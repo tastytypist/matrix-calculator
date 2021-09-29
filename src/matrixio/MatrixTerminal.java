@@ -1,6 +1,8 @@
 package matrixio;
 
 import java.util.*;
+
+import jdk.tools.jlink.resources.plugins;
 import matrix.*;
 
 public class MatrixTerminal {
@@ -95,10 +97,14 @@ public class MatrixTerminal {
         System.out.printf("Estimation result = %f", estimate_result);
     }
 
-    public static void displaySPLResult (String[] splRes) {
+    public static void displaySPLResTerminal (String[] splRes) {
         int i;
         for (i = 0; i < splRes.length; ++i) {
             System.out.printf("x%d = %s\n", i+1, splRes[i]);
         }
+    }
+    
+    public static void displayDetTerminal (float det) {
+        System.out.printf("Determinant = %f", det);
     }
 }
