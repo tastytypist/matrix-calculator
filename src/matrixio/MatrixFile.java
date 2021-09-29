@@ -277,4 +277,30 @@ public class MatrixFile {
             error.printStackTrace();
         }
     }
+    public static void displayCrammer(Matrix m) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter crammer_writer = new PrintWriter(file);
+            crammer_writer.println(Matrix.crammer(m));
+            crammer_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
+    public static void displaymatrixbalikan(Matrix m) {
+        try {
+            File file = ensureDirectoriesExist();
+
+            PrintWriter crammer_writer = new PrintWriter(file);
+            crammer_writer.println(Matrix.matriksbalikan(m));
+            crammer_writer.close();
+        }
+        catch (IOException error) {
+            System.out.println("File cannot be written into!");
+            error.printStackTrace();
+        }
+    }
 }

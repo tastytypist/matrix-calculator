@@ -107,4 +107,18 @@ public class MatrixTerminal {
     public static void displayDetTerminal (float det) {
         System.out.printf("Determinant = %f", det);
     }
+    public static void message(){
+        System.out.print("""
+            =========================
+            Input Matrix to process the SPL AX = B by turning it into augmented matrix
+            for example:
+            2x - 3y = 3
+            x + 2y = 5
+            
+            Augemented matrix form 2X3(row x colomn)
+            2 -3 3
+            1 2 5
+            ==========================
+            """);
+    }
 }
