@@ -32,15 +32,15 @@ public class Matrix {
         int i, j;
         for (i = 0; i < m.row - 1; ++i) {
             for (j = 0; j < m.col - 1; ++j) {
-                System.out.printf("%.2f ", m.contents[i][j]);
+                System.out.printf("%f ", m.contents[i][j]);
             }
-            System.out.printf("%.2f", m.contents[i][j]);
+            System.out.printf("%f", m.contents[i][j]);
             System.out.printf("\n");
         }
         for (j = 0; j < m.col - 1; ++j) {
-            System.out.printf("%.2f ", m.contents[i][j]);
+            System.out.printf("%f ", m.contents[i][j]);
         }
-            System.out.printf("%.2f", m.contents[i][j]);
+            System.out.printf("%f", m.contents[i][j]);
     }
     static int countZero (Matrix m, int i) {
         // menghitung jumlah 0 di awal baris ke-i suatu matriks
@@ -399,7 +399,7 @@ public class Matrix {
                 if (j < m.col - 1) {
                     temp = "";
                     if (m.contents[i][m.col - 1] != 0) {
-                        temp += String.format("%.2f", m.contents[i][m.col - 1]) + " ";
+                        temp += String.format("%f", m.contents[i][m.col - 1]) + " ";
                     }
                     for (k = m.col - 2; k > j; --k) {
                         if (m.contents[i][k] == 1) {
@@ -413,13 +413,13 @@ public class Matrix {
                         }
                         else if (m.contents[i][k] != 0) {
                             if (m.contents[i][k] * -1 < 0) {
-                                temp += String.format("%.2f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
+                                temp += String.format("%f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
                             }
                             else {
                                 if (temp != "") {
                                     temp += "+ ";
                                 }
-                                temp += String.format("%.2f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
+                                temp += String.format("%f", m.contents[i][k] * -1) + "x" + Integer.toString(k + 1) + " ";
                             }
                         }
                     }
