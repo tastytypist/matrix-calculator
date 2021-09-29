@@ -95,8 +95,11 @@ public class MatrixCalculator {
             int action = input.nextInt();
 
             switch (action) {
-                case 1 -> // pass 1
-                          loop = false;
+                case 1 -> {
+                    Matrix m = MatrixTerminal.readMatrixTerminal();
+                    float det = Matrix.determinant(m);
+                    System.out.printf("Determinant = %f\n", det);
+                }
                 case 2 -> {
                     // pass 2
                 }
