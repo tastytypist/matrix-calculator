@@ -24,7 +24,7 @@ public class MatrixInterpolation {
         StringBuilder result = new StringBuilder();
         float func_result = 0;
 
-        for (int i = 0; i < row_size; ++i) {
+        for (int i = 0; i < result_array.length; ++i) {
             result.append(result_array[i]).append("x^").append(i);
             if (i == row_size - 1) {
                 result.append(" + ");
