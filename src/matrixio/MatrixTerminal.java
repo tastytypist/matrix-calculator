@@ -42,8 +42,6 @@ public class MatrixTerminal {
     }
 
     public static Object[] readInterpolationTerminal() {
-        System.out.print("Input n: ");
-        int num = input.nextInt();
         System.out.print("Input number point: ");
         int point_count = input.nextInt();
 
@@ -56,6 +54,9 @@ public class MatrixTerminal {
                 point_matrix.contents[i][j] = element;
             }
         }
+
+        System.out.print("Input value to be estimated: ");
+        int num = input.nextInt();
 
         return new Object[] {point_count, num};
     }
