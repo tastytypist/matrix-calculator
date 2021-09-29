@@ -94,4 +94,11 @@ public class MatrixTerminal {
     public static void displayRegressionTerminal(float estimate_result) {
         System.out.printf("Estimation result = %f", estimate_result);
     }
+
+    public static void displaySPLResult (String[] splRes) {
+        int i;
+        for (i = 0; i < splRes.length; ++i) {
+            System.out.printf("x%d = %s", i+1, splRes[i]);
+        }
+    }
 }
