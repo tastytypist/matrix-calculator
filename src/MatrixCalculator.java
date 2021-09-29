@@ -10,7 +10,7 @@ public class MatrixCalculator {
     public static void main(String[] args) {
         boolean loop = true;
 
-        System.out.println("Welcome to matrix.Matrix Calculator!\n");
+        System.out.println("Welcome to Matrix Calculator!\n");
         while (loop) {
             mainMenu();
             int action = input.nextInt();
@@ -31,8 +31,8 @@ public class MatrixCalculator {
         System.out.print("""
                     List of operations:
                     1. System of Linear Equations
-                    2. Determinant of matrix.Matrix
-                    3. Inverse of matrix.Matrix
+                    2. Determinant of Matrix
+                    3. Inverse of Matrix
                     4. Polynomial Interpolation
                     5. Multiple Linear Regression
                     6. Exit
@@ -48,7 +48,7 @@ public class MatrixCalculator {
                     List of methods:
                     1. Gaussian Elimination
                     2. Gauss-Jordan Elimination
-                    3. matrix.Matrix Inversion
+                    3. Matrix Inversion
                     4. Cramer's Rule
                                     
                     Input method (number) :\040""");
@@ -101,7 +101,7 @@ public class MatrixCalculator {
             System.out.print("""                
                 List of methods:
                 1. Gauss-Jordan Elimination
-                2. Adjoint matrix.Matrix
+                2. Adjoint Matrix
                 
                 Input method (number) :\040""");
             int action = input.nextInt();
