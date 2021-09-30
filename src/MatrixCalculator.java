@@ -66,7 +66,7 @@ public class MatrixCalculator {
 
                     Matrix m_copy = m;
                     Matrix.gaussElim(m_copy);
-                    String[] spl_result = Matrix.spl(m_copy);
+                    String[] spl_result = Matrix.spl(m);
 
                     int output_choice = outputMenu();
                     switch (output_choice) {
@@ -92,7 +92,7 @@ public class MatrixCalculator {
 
                     Matrix m_copy = m;
                     Matrix.gaussJordanElim(m_copy);
-                    String[] spl_result = Matrix.spl(m_copy);
+                    String[] spl_result = Matrix.spl(m);
 
                     int output_choice = outputMenu();
                     switch (output_choice) {
