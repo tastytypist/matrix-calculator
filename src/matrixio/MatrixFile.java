@@ -139,6 +139,7 @@ public class MatrixFile {
             result_writer.printf("Function = %s\n", result);
             result_writer.print(function_result);
             result_writer.close();
+            System.out.println();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
@@ -209,6 +210,7 @@ public class MatrixFile {
             PrintWriter result_writer = new PrintWriter(file);
             result_writer.printf("Estimation result = %f", estimate_result);
             result_writer.close();
+            System.out.println();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");

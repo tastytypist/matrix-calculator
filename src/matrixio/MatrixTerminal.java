@@ -95,6 +95,7 @@ public class MatrixTerminal {
 
     public static void displayRegressionTerminal(float estimate_result) {
         System.out.printf("Estimation result = %f\n", estimate_result);
+        System.out.println();
     }
 
     public static void displaySPLResTerminal (String[] splRes) {
