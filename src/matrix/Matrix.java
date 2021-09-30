@@ -317,6 +317,7 @@ public class Matrix {
         // matriks tidak harus berupa matriks persegi
         int i, j, n, k, nextRow;
         float c;
+        double scale = Math.pow(10, 5);
         sortRow(m);
         nextRow = 0;
         for (j = 0; j < m.col; ++j) {
@@ -348,7 +349,7 @@ public class Matrix {
                 c = m.contents[i][j];
                 for (k = 0; k < m.col; ++k) {
                     m.contents[i][k] /= c;
-                    if (m.contents[i][k] == -0) {
+                    if (Math.round(m.contents[i][k] * scale) == 0) {
                         m.contents[i][k] = 0;
                     }
                 }
@@ -359,6 +360,7 @@ public class Matrix {
     public static void gaussJordanElim (Matrix m) {
         int i, j, k, n;
         float c;
+        double scale = Math.pow(10, 5);
         gaussElim(m);
         for (i = m.row - 1; i > 0; --i) {
             if (!isZeroRow(m, i)) {
@@ -369,6 +371,9 @@ public class Matrix {
                         c = m.contents[n][j]/m.contents[i][j];
                         for (k = 0; k < m.col; ++k) {
                             m.contents[n][k] -= c * m.contents[i][k];
+                            if (Math.round(m.contents[n][k] * scale) == 0) {
+                                m.contents[n][k] = 0;
+                            }
                         }
                     }
                 }
