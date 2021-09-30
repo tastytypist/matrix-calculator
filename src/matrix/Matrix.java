@@ -46,11 +46,12 @@ public class Matrix {
         // menghitung jumlah 0 di awal baris ke-i suatu matriks
         int j, count_zero;
         boolean is_zero;
+        double scale = Math.pow(10,5);
         count_zero = 0;
         j = 0;
         is_zero = true;
         while ((j < m.col) && is_zero) {
-            if (m.contents[i][j] == 0) {
+            if (Math.round(m.contents[i][j] * scale) == 0) {
                 count_zero++;
                 j++;
             }
