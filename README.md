@@ -18,7 +18,7 @@ Supported operations:
 matrixcalculator
 ├── bin                          # Contains java bytecode (.class) 
 ├── doc                          # Contains documentation in the form of a report
-├── output                       # Contains results created by the calculator
+├── out                          # Contains results created by the calculator
 ├── src                          # Contains source files (.java)
 │   ├── matrix                   # Contains matrix operations
 │   │   ├── Matrix               # Operations for matrix determinant, matrix inverse, and system of linear equations
