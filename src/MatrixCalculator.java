@@ -69,10 +69,12 @@ public class MatrixCalculator {
                     Matrix m_copy = m;
                     Matrix.gaussElim(m_copy);
                     String[] spl_result = Matrix.spl(m);
-
+                    
+                    System.out.println();
                     int output_choice = outputMenu();
                     switch (output_choice) {
                         case 1 -> {
+                            System.out.println();
                             MatrixTerminal.displayMatrixTerminal(m_copy);
                             System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);
@@ -97,9 +99,11 @@ public class MatrixCalculator {
                     Matrix.gaussJordanElim(m_copy);
                     String[] spl_result = Matrix.spl(m);
 
+                    System.out.println();
                     int output_choice = outputMenu();
                     switch (output_choice) {
                         case 1 -> {
+                            System.out.println();
                             MatrixTerminal.displayMatrixTerminal(m_copy);
                             System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);

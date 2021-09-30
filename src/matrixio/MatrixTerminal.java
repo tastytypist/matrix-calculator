@@ -108,6 +108,7 @@ public class MatrixTerminal {
             for (i = 0; i < splRes.length; ++i) {
                 System.out.printf("x%d = %s\n", i+1, splRes[i]);
             }
+            System.out.println();
         }
     }
     
