@@ -114,5 +114,6 @@ public class MatrixTerminal {
     
     public static void displayDetTerminal (float det) {
         System.out.printf("Determinant = %f", det);
+        System.out.println();
     }
 }

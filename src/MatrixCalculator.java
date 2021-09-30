@@ -214,8 +214,10 @@ public class MatrixCalculator {
                         case 2 -> m = MatrixFile.readMatrixFile();
                     }
 
+                    System.out.println();
                     float det = Matrix.determinant(m);
                     int output_choice = outputMenu();
+                    System.out.println();
 
                     switch (output_choice) {
                         case 1 -> MatrixTerminal.displayDetTerminal(det);
