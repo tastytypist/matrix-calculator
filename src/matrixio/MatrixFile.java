@@ -249,12 +249,21 @@ public class MatrixFile {
         return file;
     }
 
-    public static void displaySPLResFile (String[] splRes) {
+    public static void displaySPLResFile (String[] splRes, Matrix m) {
         try {
             File file = ensureDirectoriesExist();
 
             PrintWriter result_writer = new PrintWriter(file);
-            int i;
+            int i, j;
+
+            for (i = 0; i < m.row; ++i) {
+                for (j = 0; j < m.col; ++j) {
+                    result_writer.printf("%f ", m.contents[i][j]);
+                }
+                result_writer.println();
+            }
+            result_writer.println();
+            
             if (splRes.length == 0) {
                 result_writer.printf("Sistem persamaan linear tidak memiliki solusi.");
             }

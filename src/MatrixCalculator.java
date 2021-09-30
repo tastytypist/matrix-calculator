@@ -74,11 +74,11 @@ public class MatrixCalculator {
                     switch (output_choice) {
                         case 1 -> {
                             MatrixTerminal.displayMatrixTerminal(m_copy);
+                            System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);
                         }
                         case 2 -> {
-                            MatrixFile.displayMatrixFile(m_copy);
-                            MatrixFile.displaySPLResFile(spl_result);
+                            MatrixFile.displaySPLResFile(spl_result, m_copy);
                         }
                     }
                     
@@ -101,11 +101,11 @@ public class MatrixCalculator {
                     switch (output_choice) {
                         case 1 -> {
                             MatrixTerminal.displayMatrixTerminal(m_copy);
+                            System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);
                         }
                         case 2 -> {
-                            MatrixFile.displayMatrixFile(m_copy);
-                            MatrixFile.displaySPLResFile(spl_result);
+                            MatrixFile.displaySPLResFile(spl_result, m_copy);
                         }
                     }                    
                 }
