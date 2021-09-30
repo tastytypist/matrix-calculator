@@ -219,7 +219,7 @@ public class MatrixFile {
     }
 
     private static File ensureDirectoriesExist() throws IOException {
-        String folder_path = new File(".\\output\\").getCanonicalPath();
+        String folder_path = new File(".\\out\\").getCanonicalPath();
         File folder = new File(folder_path);
         if (!folder.exists()) {
             if (!folder.mkdir()) {
@@ -237,7 +237,7 @@ public class MatrixFile {
                 file_name = file_name + suffix;
             }
 
-            String file_path = new File(".\\output\\" + file_name).getCanonicalPath();
+            String file_path = new File(".\\out\\" + file_name).getCanonicalPath();
             file = new File(file_path);
             if (file.createNewFile()) {
                 break;
@@ -255,8 +255,13 @@ public class MatrixFile {
 
             PrintWriter result_writer = new PrintWriter(file);
             int i;
-            for (i = 0; i < splRes.length; ++i) {
-                result_writer.printf("x%d = %s\n", i+1, splRes[i]);
+            if (splRes.length == 0) {
+                result_writer.printf("Sistem persamaan linear tidak memiliki solusi.");
+            }
+            else {
+                for (i = 0; i < splRes.length; ++i) {
+                    result_writer.printf("x%d = %s\n", i+1, splRes[i]);
+                }
             }
             result_writer.close();
         }

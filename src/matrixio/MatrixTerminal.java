@@ -100,8 +100,14 @@ public class MatrixTerminal {
 
     public static void displaySPLResTerminal (String[] splRes) {
         int i;
-        for (i = 0; i < splRes.length; ++i) {
-            System.out.printf("x%d = %s\n", i+1, splRes[i]);
+        if (splRes.length == 0) {
+            System.out.println("Sistem persamaan linear tidak memiliki solusi.");
+            System.out.println();
+        }
+        else {
+            for (i = 0; i < splRes.length; ++i) {
+                System.out.printf("x%d = %s\n", i+1, splRes[i]);
+            }
         }
     }
     
