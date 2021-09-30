@@ -1,7 +1,11 @@
 package matrixio;
 
 import java.util.*;
+<<<<<<< HEAD
 import jdk.tools.jlink.resources.plugins;
+=======
+
+>>>>>>> origin/main
 import matrix.*;
 
 public class MatrixTerminal {
@@ -69,22 +73,23 @@ public class MatrixTerminal {
     }
 
     public static Object[] readRegressionTerminal() {
-        System.out.print("Input the number of variables: ");
+        System.out.print("Input the total number of variables (x) and constants (y): ");
         int var_count = input.nextInt();
-        int column_size = var_count + 1;
+        System.out.print("Input the number of data sample: ");
+        int data_count = input.nextInt();
 
-        Matrix point_list = Matrix.createMtr(var_count, column_size);
+        Matrix point_list = Matrix.createMtr(data_count, var_count);
         System.out.println("Input values: ");
-        for (int i = 0; i < var_count; ++i) {
-            for (int j = 0; j < column_size; ++j) {
+        for (int i = 0; i < data_count; ++i) {
+            for (int j = 0; j < var_count; ++j) {
                 float element = input.nextFloat();
                 point_list.contents[i][j] = element;
             }
         }
 
-        float[] estimate_list = new float[var_count];
+        float[] estimate_list = new float[var_count - 1];
         System.out.println("Input values to be estimated: ");
-        for (int i = 0; i < var_count; ++i) {
+        for (int i = 0; i < var_count - 1; ++i) {
             float element = input.nextFloat();
             estimate_list[i] = element;
         }
@@ -93,17 +98,26 @@ public class MatrixTerminal {
     }
 
     public static void displayRegressionTerminal(float estimate_result) {
-        System.out.printf("Estimation result = %f", estimate_result);
+        System.out.printf("Estimation result = %f\n", estimate_result);
+        System.out.println();
     }
 
     public static void displaySPLResTerminal (String[] splRes) {
         int i;
-        for (i = 0; i < splRes.length; ++i) {
-            System.out.printf("x%d = %s\n", i+1, splRes[i]);
+        if (splRes.length == 0) {
+            System.out.println("Sistem persamaan linear tidak memiliki solusi.");
+            System.out.println();
+        }
+        else {
+            for (i = 0; i < splRes.length; ++i) {
+                System.out.printf("x%d = %s\n", i+1, splRes[i]);
+            }
+            System.out.println();
         }
     }
     
     public static void displayDetTerminal (float det) {
         System.out.printf("Determinant = %f", det);
+        System.out.println();
     }
 }

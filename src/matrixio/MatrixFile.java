@@ -9,6 +9,7 @@ public class MatrixFile {
 
     static Scanner input = new Scanner(System.in);
 
+    @SuppressWarnings("DuplicatedCode")
     public static Matrix readMatrixFile() {
         Matrix matrix = new Matrix();
 
@@ -138,6 +139,7 @@ public class MatrixFile {
             result_writer.printf("Function = %s\n", result);
             result_writer.print(function_result);
             result_writer.close();
+            System.out.println();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
@@ -145,6 +147,7 @@ public class MatrixFile {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static Object[] readRegressionFile() {
         System.out.print("Input file name: ");
         String file_name = input.next();
@@ -156,22 +159,30 @@ public class MatrixFile {
 
         Matrix point_list = new Matrix();
         float[] estimate_list = new float[0];
-        int var_count = 0;
         try {
             String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
+            int data_count = 0;
+            int var_count = 0;
             while (file_input.hasNextLine()) {
-                file_input.nextLine();
-                var_count += 1;
+                if (data_count == 0) {
+                    String matrix_row = file_input.nextLine();
+                    String[] array_row = matrix_row.split(" ");
+                    var_count = array_row.length;
+                }
+                else {
+                    file_input.nextLine();
+                }
+                data_count += 1;
             }
-            var_count = (var_count - 1) / 2;
             file_input.close();
 
-            int row_size = var_count;
-            int column_size = var_count + 1;
-            estimate_list = new float[var_count];
+            int row_size = data_count - 1;
+            int column_size = var_count;
+            point_list = Matrix.createMtr(row_size, column_size);
+            estimate_list = new float[var_count - 1];
             Scanner value_input = new Scanner(file);
 
             for (int i = 0; i < row_size; ++i) {
@@ -180,7 +191,7 @@ public class MatrixFile {
                 }
             }
 
-            for (int i = 0; i < var_count; ++i) {
+            for (int i = 0; i < var_count - 1; ++i) {
                 estimate_list[i] = value_input.nextFloat();
             }
         }
@@ -199,6 +210,7 @@ public class MatrixFile {
             PrintWriter result_writer = new PrintWriter(file);
             result_writer.printf("Estimation result = %f", estimate_result);
             result_writer.close();
+            System.out.println();
         }
         catch (IOException error) {
             System.out.println("File cannot be written into!");
@@ -207,7 +219,7 @@ public class MatrixFile {
     }
 
     private static File ensureDirectoriesExist() throws IOException {
-        String folder_path = new File(".\\output\\").getCanonicalPath();
+        String folder_path = new File(".\\out\\").getCanonicalPath();
         File folder = new File(folder_path);
         if (!folder.exists()) {
             if (!folder.mkdir()) {
@@ -225,7 +237,7 @@ public class MatrixFile {
                 file_name = file_name + suffix;
             }
 
-            String file_path = new File(".\\output\\" + file_name).getCanonicalPath();
+            String file_path = new File(".\\out\\" + file_name).getCanonicalPath();
             file = new File(file_path);
             if (file.createNewFile()) {
                 break;
@@ -237,14 +249,28 @@ public class MatrixFile {
         return file;
     }
 
-    public static void displaySPLResFile (String[] splRes) {
+    public static void displaySPLResFile (String[] splRes, Matrix m) {
         try {
             File file = ensureDirectoriesExist();
 
             PrintWriter result_writer = new PrintWriter(file);
-            int i;
-            for (i = 0; i < splRes.length; ++i) {
-                result_writer.printf("x%d = %s\n", i+1, splRes[i]);
+            int i, j;
+
+            for (i = 0; i < m.row; ++i) {
+                for (j = 0; j < m.col; ++j) {
+                    result_writer.printf("%f ", m.contents[i][j]);
+                }
+                result_writer.println();
+            }
+            result_writer.println();
+            
+            if (splRes.length == 0) {
+                result_writer.printf("Sistem persamaan linear tidak memiliki solusi.");
+            }
+            else {
+                for (i = 0; i < splRes.length; ++i) {
+                    result_writer.printf("x%d = %s\n", i+1, splRes[i]);
+                }
             }
             result_writer.close();
         }
@@ -267,7 +293,10 @@ public class MatrixFile {
             error.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     public static void displayCrammer(Matrix m) {
         try {
             File file = ensureDirectoriesExist();

@@ -50,13 +50,19 @@ public class MatrixCalculator {
                     2. Gauss-Jordan Elimination
                     3. Matrix Inversion
                     4. Cramer's Rule
+<<<<<<< HEAD
                     5. Exit
                                     
+=======
+                    5. Back
+                    
+>>>>>>> origin/main
                     Input method (number) :\040""");
             int action = input.nextInt();
 
             switch (action) {
                 case 1 -> {
+                    loop = false;
                     int input_choice = inputMenu();
                     Matrix m = Matrix.createMtr(0, 0);
 
@@ -67,22 +73,25 @@ public class MatrixCalculator {
 
                     Matrix m_copy = m;
                     Matrix.gaussElim(m_copy);
-                    String[] spl_result = Matrix.spl(m_copy);
-
+                    String[] spl_result = Matrix.spl(m);
+                    
+                    System.out.println();
                     int output_choice = outputMenu();
                     switch (output_choice) {
                         case 1 -> {
+                            System.out.println();
                             MatrixTerminal.displayMatrixTerminal(m_copy);
+                            System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);
                         }
                         case 2 -> {
-                            MatrixFile.displayMatrixFile(m_copy);
-                            MatrixFile.displaySPLResFile(spl_result);
+                            MatrixFile.displaySPLResFile(spl_result, m_copy);
                         }
                     }
                     
                 }
                 case 2 -> {
+                    loop = false;
                     int input_choice = inputMenu();
                     Matrix m = Matrix.createMtr(0, 0);
 
@@ -93,20 +102,23 @@ public class MatrixCalculator {
 
                     Matrix m_copy = m;
                     Matrix.gaussJordanElim(m_copy);
-                    String[] spl_result = Matrix.spl(m_copy);
+                    String[] spl_result = Matrix.spl(m);
 
+                    System.out.println();
                     int output_choice = outputMenu();
                     switch (output_choice) {
                         case 1 -> {
+                            System.out.println();
                             MatrixTerminal.displayMatrixTerminal(m_copy);
+                            System.out.println();
                             MatrixTerminal.displaySPLResTerminal(spl_result);
                         }
                         case 2 -> {
-                            MatrixFile.displayMatrixFile(m_copy);
-                            MatrixFile.displaySPLResFile(spl_result);
+                            MatrixFile.displaySPLResFile(spl_result, m_copy);
                         }
                     }                    
                 }
+<<<<<<< HEAD
                 case 3 -> {     
                     int input_choice = inputMenu();
                     switch (input_choice){
@@ -124,6 +136,26 @@ public class MatrixCalculator {
                                 1 2 5
                                 ==========================
                                 """);
+=======
+                case 3 -> {
+                    loop = false;
+                    int input_choice = inputMenu();
+                    switch (input_choice){
+                        case 1 ->{
+                            System.out.print("""
+                            =========================
+                            Input Matrix to process the SPL AX = B by turning it into augmented matrix
+                            for example:
+                            2x - 3y = 3
+                            x + 2y = 5
+                            
+                            Augemented matrix form 2X3(row x colomn)
+                            2 -3 3
+                            1 2 5
+                            ==========================
+                            """);
+                            
+>>>>>>> origin/main
                             Matrix m1 = MatrixTerminal.readMatrixTerminal();
                             int output_choice = outputMenu();
                             switch(output_choice) {
@@ -154,10 +186,18 @@ public class MatrixCalculator {
                     }  
                 }
                 case 4 -> {
+<<<<<<< HEAD
                     int input_choice = inputMenu();
                     switch (input_choice){
                         case 1 ->{
             
+=======
+                    loop = false;
+                    int input_choice = inputMenu();
+                    switch (input_choice){
+                        case 1 ->{
+
+>>>>>>> origin/main
                             System.out.print("Please input a matrix where its cols = rows +1 \n\n");
                             Matrix m1 = MatrixTerminal.readMatrixTerminal();
                             int output_choice = outputMenu();
@@ -191,8 +231,13 @@ public class MatrixCalculator {
                 List of methods:
                 1. Row Reduction
                 2. Cofactor Expansion
+<<<<<<< HEAD
                 3. Exit
                 
+=======
+                3. Back
+
+>>>>>>> origin/main
                 Input method (number) :\040""");
             int action = input.nextInt();
 
@@ -206,8 +251,10 @@ public class MatrixCalculator {
                         case 2 -> m = MatrixFile.readMatrixFile();
                     }
 
+                    System.out.println();
                     float det = Matrix.determinant(m);
                     int output_choice = outputMenu();
+                    System.out.println();
 
                     switch (output_choice) {
                         case 1 -> MatrixTerminal.displayDetTerminal(det);
@@ -249,12 +296,21 @@ public class MatrixCalculator {
                 List of methods:
                 1. Gauss-Jordan Elimination
                 2. Adjoint Matrix
+<<<<<<< HEAD
                 3. Exit
                 
                 Input method (number) :\040""");
                 int action = input.nextInt();
                 
                 switch (action) {
+=======
+                3. Back
+
+                Input method (number) :\040""");
+            int action = input.nextInt();
+
+            switch (action) {
+>>>>>>> origin/main
                 case 1 -> {
                     int input_choice = inputMenu();
                     switch (input_choice){
@@ -266,7 +322,11 @@ public class MatrixCalculator {
                                 case 1-> Matrix.inversegauss(m1,1);
                                 case 2 -> {
                                     Matrix.inversegauss(m1,0);
+<<<<<<< HEAD
                                     MatrixFile.displayMatrixFile(m1); 
+=======
+                                    MatrixFile.displayMatrixFile(m1);
+>>>>>>> origin/main
                                 }
                             }
                         }
@@ -278,6 +338,7 @@ public class MatrixCalculator {
                                 case 1-> Matrix.inversegauss(m1,1);
                                 case 2 -> {
                                     Matrix.inversegauss(m1,0);
+<<<<<<< HEAD
                                     MatrixFile.displayMatrixFile(m1); 
                                 }
                             }
@@ -290,15 +351,35 @@ public class MatrixCalculator {
                 
                         case 1 -> {
                    
+=======
+                                    MatrixFile.displayMatrixFile(m1);
+                                }
+                            }
+                        }
+                    }
+                }
+                case 2 -> {
+
+                    int input_choice = inputMenu() ;
+                    switch (input_choice){
+
+                        case 1 -> {
+
+>>>>>>> origin/main
                             System.out.print("Please input a square matrix (row = col)\n\n");
                             Matrix m = MatrixTerminal.readMatrixTerminal();
                             Matrix inverse = Matrix.createMtr(m.row, m.col);
                             Matrix.inverseFunction(m, inverse);
+<<<<<<< HEAD
                             System.out.println();      
+=======
+                            System.out.println();
+>>>>>>> origin/main
                             int output_choice = outputMenu();
                             switch(output_choice) {
                                 case 1->{
                                     if (Matrix.isallzero(inverse)) {
+<<<<<<< HEAD
                                         System.out.print("unavailable to process, either matrix does not have inverse or not square\n\n"); 
                                         break;
                                     }
@@ -309,6 +390,18 @@ public class MatrixCalculator {
                         }
                         case 2 -> {
                 
+=======
+                                        System.out.print("unavailable to process, either matrix does not have inverse or not square\n\n");
+                                        break;
+                                    }
+                                    else MatrixTerminal.displayMatrixTerminal(inverse);
+                                }
+                                case 2 -> MatrixFile.displayMatrixFile(inverse);
+                            }
+                        }
+                        case 2 -> {
+
+>>>>>>> origin/main
                             System.out.print("Please input file which has a square matrix (row = col) \n\n");
                             Matrix m = MatrixFile.readMatrixFile();
                             Matrix inverse = Matrix.createMtr(m.row, m.col);
@@ -318,6 +411,7 @@ public class MatrixCalculator {
                             switch(output_choice) {
                                 case 1->{
                                     if (Matrix.isallzero(inverse)) {
+<<<<<<< HEAD
                                         System.out.print("unavailable to process, either matrix does not have inverse or not square\n\n"); 
                                         break;
                                     }
@@ -329,6 +423,20 @@ public class MatrixCalculator {
                     }               
                 }
                 case 3 -> loop = false;    
+=======
+                                        System.out.print("unavailable to process, either matrix does not have inverse or not square\n\n");
+                                        break;
+                                    }
+                                    else MatrixTerminal.displayMatrixTerminal(inverse);
+                                }
+                                case 2 -> MatrixFile.displayMatrixFile(inverse);
+                            }
+                        }
+                    }
+                }
+                case 3 -> loop = false;
+                default -> System.out.println("Masukan tidak valid. Silakan ulangi!");
+>>>>>>> origin/main
             }
         }
     }
@@ -422,7 +530,7 @@ public class MatrixCalculator {
                     1. Terminal
                     2. File
                     
-                    Input choice (number):\040""");
+                    Output choice (number):\040""");
             int choice = input.nextInt();
 
             switch (choice) {

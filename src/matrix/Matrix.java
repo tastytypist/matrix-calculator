@@ -1,5 +1,8 @@
 package matrix;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 import java.lang.Math;
 import java.util.Scanner;
 
@@ -47,11 +50,12 @@ public class Matrix {
         // menghitung jumlah 0 di awal baris ke-i suatu matriks
         int j, count_zero;
         boolean is_zero;
+        double scale = Math.pow(10,5);
         count_zero = 0;
         j = 0;
         is_zero = true;
         while ((j < m.col) && is_zero) {
-            if (m.contents[i][j] == 0) {
+            if (Math.round(m.contents[i][j] * scale) == 0) {
                 count_zero++;
                 j++;
             }
@@ -201,7 +205,10 @@ public class Matrix {
         return mCpy;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     static Matrix CofactorFunction(Matrix main) {
         Matrix coFactor = createMtr(main.row, main.col);
         for (int x = 0; x < main.row; x++) {
@@ -290,7 +297,11 @@ public class Matrix {
                 for (int b = 0; b < m.row; b++) {			   
                     mCpy.contents[b][a] = m.contents[b][mCpy.col-1];
                 } 
+<<<<<<< HEAD
                 temp = temp.concat(String.format("x%d = %.3f\n",(a+1), (determinant(mCpy)/D)));
+=======
+                temp = temp.concat(String.format("x%d = %f\n",(a+1), (determinant(mCpy)/D)));
+>>>>>>> origin/main
             }
         }
         return temp;
@@ -318,6 +329,7 @@ public class Matrix {
         // matriks tidak harus berupa matriks persegi
         int i, j, n, k, nextRow;
         float c;
+        double scale = Math.pow(10, 5);
         sortRow(m);
         nextRow = 0;
         for (j = 0; j < m.col; ++j) {
@@ -349,7 +361,7 @@ public class Matrix {
                 c = m.contents[i][j];
                 for (k = 0; k < m.col; ++k) {
                     m.contents[i][k] /= c;
-                    if (m.contents[i][k] == -0) {
+                    if (Math.round(m.contents[i][k] * scale) == 0) {
                         m.contents[i][k] = 0;
                     }
                 }
@@ -360,6 +372,7 @@ public class Matrix {
     public static void gaussJordanElim (Matrix m) {
         int i, j, k, n;
         float c;
+        double scale = Math.pow(10, 5);
         gaussElim(m);
         for (i = m.row - 1; i > 0; --i) {
             if (!isZeroRow(m, i)) {
@@ -370,6 +383,9 @@ public class Matrix {
                         c = m.contents[n][j]/m.contents[i][j];
                         for (k = 0; k < m.col; ++k) {
                             m.contents[n][k] -= c * m.contents[i][k];
+                            if (Math.round(m.contents[n][k] * scale) == 0) {
+                                m.contents[n][k] = 0;
+                            }
                         }
                     }
                 }
@@ -437,7 +453,10 @@ public class Matrix {
         return res;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     public static void inversegauss (Matrix m, int key){
         // inverse dengan metode gauss elimination
         // periska jika matrix bisa diinverse
@@ -472,6 +491,7 @@ public class Matrix {
             }
             if (flag){
                 if (key == 1){
+<<<<<<< HEAD
                 System.out.print("\nBentuk Matriks setelah Diinverse: \n");
                 displayMtr(matrixinver); //untuk display hasilnya, setelah dilakukan gauss jordon elimination,
                 // diganti m untuk memasukkan hasil inverse dan display hasilnya juga
@@ -541,8 +561,27 @@ public class Matrix {
             for (row = 0; row < m.row;row++){
                 for (int j = 0; j < m.col-1; j++){
                     temp2.contents[row][j] = m.contents[row][j];
+=======
+                    System.out.print("\nBentuk Matriks setelah Diinverse: \n");
+                    displayMtr(matrixinver); //untuk display hasilnya, setelah dilakukan gauss jordon elimination,
+                    // diganti m untuk memasukkan hasil inverse dan display hasilnya juga
+                    System.out.print("\n\n");
+                    }
+                    for (int u = 0; u<matrixinver.row; u++){
+                        for (int v = m.col ;v<matrixinver.col; v++){
+                            m.contents[u][v-m.col] = matrixinver.contents[u][v];
+                        }
+                    }
+                    if (key == 1){
+                    System.out.print("Hasilnya inverse adalah :\n");
+                    displayMtr(m);
+                    System.out.print("\n\n");
+                    }
+>>>>>>> origin/main
                 }
+                else System.out.println("Does not have an inverse\n");
             }
+<<<<<<< HEAD
             inverseFunction(temp2, temp2);
             Matrix hasil = multiplyMatrix(temp2, temp1);
             for (int a = 0; a < hasil.row; a++){
@@ -553,6 +592,70 @@ public class Matrix {
             return tempst;
         }
         return tempst;
+=======
+            else System.out.println("Does not have an inverse\n");
+        }
+    
+        public static float cofactordeterminant(Matrix m){
+            float det = 0;
+            if (isSquare(m)){
+                det = 0;
+                int i = 0;
+                for (int j = 0; j < m.col ; j ++){
+                    det = det +  m.contents[i][j]*CofactorFunction(m).contents[i][j];
+                    }
+                }
+                return (det);
+        }
+    
+        static Matrix multiplyMatrix(Matrix m1, Matrix m2){
+                // mengalikan matriks
+                Matrix multiply = createMtr(m1.row, m2.col);
+                int i=0 ;// inisialisasi untuk baris
+                int j=0 ;// inisialisasi untuk kolom
+                int k=0 ;// inisialisasi untuk kolom       
+                // Menginput nilai
+                for (i=0; i < multiply.row; i++){
+                    for (j=0; j< multiply.col ; j++){
+                        float temp = 0;
+                        for (k=0; k< m2.row ;k++){
+                            temp += m1.contents[i][k] * m2.contents[k][j];
+                        }
+                        multiply.contents[i][j] = temp;
+                    }
+                }
+                return multiply;
+            }
+    
+        public static String matriksbalikan(Matrix m){
+            float det = determinant(m);
+            String tempst = new String ();
+            tempst = " ";
+            tempst = "Wrong matrix input or Augmented matrix does not have an inverse\n";
+            if (m.row == m.col -1 && det != 0){
+                tempst = "";
+                Matrix temp1 = createMtr(m.row, 1);
+                Matrix temp2 = createMtr(m.row, m.col-1);
+                int row = 0;
+                int col = m.col -1;
+                for (row= 0; row < m.row ; row++){
+                    temp1.contents[row][0] = m.contents[row][col];
+                }
+                for (row = 0; row < m.row;row++){
+                    for (int j = 0; j < m.col-1; j++){
+                        temp2.contents[row][j] = m.contents[row][j];
+                    }
+                }
+                inverseFunction(temp2, temp2);
+                Matrix hasil = multiplyMatrix(temp2, temp1);
+                for (int a = 0; a < hasil.row; a++){
+                    for (int b = 0; b <hasil.col; b++){
+                        tempst = tempst.concat(String.format("x%d = %f\n",(a+1), hasil.contents[a][b]));
+                    }               
+                }
+                return tempst;
+            }
+            return tempst;
+>>>>>>> origin/main
     }
 }
-
