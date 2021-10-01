@@ -3,14 +3,14 @@ import java.lang.Math;
 import java.util.Scanner;
 
 public class Matrix {
-    public float[][] contents;
+    public double[][] contents;
     public int row;
     public int col;
 
     public static Matrix createMtr (int a, int b) {
         // membuat matriks kosong berukuran a x b
         Matrix m = new Matrix();
-        m.contents = new float[a][b];
+        m.contents = new double[a][b];
         m.row = a;
         m.col = b;
         return m;
@@ -22,7 +22,7 @@ public class Matrix {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < m.row; ++i) {
             for (int j = 0; j < m.col; ++j) {
-                m.contents[i][j] = sc.nextFloat();
+                m.contents[i][j] = sc.nextDouble();
             }
         }
         sc.close();
@@ -104,7 +104,7 @@ public class Matrix {
 
     static void swapRow(Matrix m, int a, int b) {
         // menukar baris m[a] dengan m[b]
-        float tempVal;
+        double tempVal;
         for (int i = 0; i < m.col; ++i) {
             tempVal = m.contents[a][i];
             m.contents[a][i] = m.contents[b][i];
@@ -112,11 +112,11 @@ public class Matrix {
         }
     }
 
-    public static void segitigaAtas (Matrix m, float[] det) {
+    public static void segitigaAtas (Matrix m, double[] det) {
         // Matriks dipastikan adalah matriks persegi
         // menghasilkan matriks segitiga atas
         int i, j, n, k;
-        float c;
+        double c;
         for (i = 0; i < m.row; ++i) {
             if (countZero(m, i) > i) {
                 n = rowtoSwap(m, i);
@@ -142,12 +142,12 @@ public class Matrix {
         }
     }
 
-    public static float determinant (Matrix m) {
+    public static double determinant (Matrix m) {
         // m dipastikan adalah matriks persegi
         // mencari determinan dari matriks
         int i;
         Matrix mCpy;
-        float[] det = new float[1];
+        double[] det = new double[1];
         i = 0;
         while ((i < m.row) && !isZeroRow(m, i)) {
             i++;
@@ -211,7 +211,7 @@ public class Matrix {
                 for (int a = 0; a < main.row; a++) {
                     for (int b = 0; b < main.col; b++) {
                         double hasilkali = Math.pow(-1,(a+b+2));
-                        float resulthasil = (float)hasilkali;
+                        double resulthasil = (double)hasilkali;
                         if (b == 0) {
                             colCount = 0;
                         }
@@ -249,7 +249,7 @@ public class Matrix {
         //inverse metode adjoin
         if (isSquare(main)){
             Matrix hasilAdj = transpose((CofactorFunction(main)));
-            float det = determinant(main);
+            double det = determinant(main);
            //
             if (det != 0) {
                 // tanda akan diproses
@@ -275,7 +275,7 @@ public class Matrix {
 	}
 		
     public static String crammer(Matrix m) {
-        float D = 1;
+        double D = 1;
         D = determinant(m);
         String temp = new String ();
         temp = " ";
@@ -316,7 +316,7 @@ public class Matrix {
         // hasil akhir berupa matriks eselon
         // matriks tidak harus berupa matriks persegi
         int i, j, n, k, nextRow;
-        float c;
+        double c;
         double scale = Math.pow(10, 5);
         sortRow(m);
         nextRow = 0;
@@ -359,7 +359,7 @@ public class Matrix {
 
     public static void gaussJordanElim (Matrix m) {
         int i, j, k, n;
-        float c;
+        double c;
         double scale = Math.pow(10, 5);
         gaussElim(m);
         for (i = m.row - 1; i > 0; --i) {
@@ -496,8 +496,8 @@ public class Matrix {
             else System.out.println("Does not have an inverse\n");
         }
     
-        public static float cofactordeterminant(Matrix m){
-            float det = 0;
+        public static double cofactordeterminant(Matrix m){
+            double det = 0;
             if (isSquare(m)){
                 det = 0;
                 int i = 0;
@@ -517,7 +517,7 @@ public class Matrix {
                 // Menginput nilai
                 for (i=0; i < multiply.row; i++){
                     for (j=0; j< multiply.col ; j++){
-                        float temp = 0;
+                        double temp = 0;
                         for (k=0; k< m2.row ;k++){
                             temp += m1.contents[i][k] * m2.contents[k][j];
                         }
@@ -528,7 +528,7 @@ public class Matrix {
             }
     
         public static String matriksbalikan(Matrix m){
-            float det = determinant(m);
+            double det = determinant(m);
             String tempst = new String ();
             tempst = " ";
             tempst = "Wrong matrix input or Augmented matrix does not have an inverse\n";

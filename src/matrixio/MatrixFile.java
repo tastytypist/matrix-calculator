@@ -46,7 +46,7 @@ public class MatrixFile {
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
-                    matrix.contents[i][j] = matrix_input.nextFloat();
+                    matrix.contents[i][j] = matrix_input.nextDouble();
                 }
             }
             matrix_input.close();
@@ -98,13 +98,13 @@ public class MatrixFile {
             file_name = file_name + suffix;
         }
 
-        float num = 0;
+        double num = 0;
         try {
             String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
-            num = file_input.nextFloat();
+            num = file_input.nextDouble();
             int row_size = -1;
             while (file_input.hasNextLine()) {
                 file_input.nextLine();
@@ -118,7 +118,7 @@ public class MatrixFile {
             matrix_input.nextLine();
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < 2; ++j) {
-                    matrix.contents[i][j] = matrix_input.nextFloat();
+                    matrix.contents[i][j] = matrix_input.nextDouble();
                 }
             }
             matrix_input.close();
@@ -158,7 +158,7 @@ public class MatrixFile {
         }
 
         Matrix point_list = new Matrix();
-        float[] estimate_list = new float[0];
+        double[] estimate_list = new double[0];
         try {
             String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
@@ -182,17 +182,17 @@ public class MatrixFile {
             int row_size = data_count - 1;
             int column_size = var_count;
             point_list = Matrix.createMtr(row_size, column_size);
-            estimate_list = new float[var_count - 1];
+            estimate_list = new double[var_count - 1];
             Scanner value_input = new Scanner(file);
 
             for (int i = 0; i < row_size; ++i) {
                 for (int j = 0; j < column_size; ++j) {
-                    point_list.contents[i][j] = value_input.nextFloat();
+                    point_list.contents[i][j] = value_input.nextDouble();
                 }
             }
 
             for (int i = 0; i < var_count - 1; ++i) {
-                estimate_list[i] = value_input.nextFloat();
+                estimate_list[i] = value_input.nextDouble();
             }
         }
         catch (IOException error) {
@@ -203,7 +203,7 @@ public class MatrixFile {
         return new Object[] {point_list, estimate_list};
     }
 
-    public static void displayRegressionFile(float estimate_result) {
+    public static void displayRegressionFile(double estimate_result) {
         try {
             File file = ensureDirectoriesExist();
 
@@ -280,7 +280,7 @@ public class MatrixFile {
         }
     }
 
-    public static void displayDetFile (float det) {
+    public static void displayDetFile (double det) {
         try {
             File file = ensureDirectoriesExist();
 

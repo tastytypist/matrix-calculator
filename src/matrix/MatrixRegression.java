@@ -2,12 +2,12 @@ package matrix;
 
 public class MatrixRegression {
 
-    public static float calcEstimation(Matrix point_list, float[] estimate_list) {
+    public static double calcEstimation(Matrix point_list, double[] estimate_list) {
         int row_size = point_list.col;
         int column_size = point_list.col + 1;
         Matrix regression_system = Matrix.createMtr(row_size, column_size);
 
-        float element;
+        double element;
         for (int i = 0; i < row_size; ++i) {
             for (int j = 0; j < column_size; ++j) {
                 element = 0;
@@ -32,13 +32,13 @@ public class MatrixRegression {
         }
 
         String[] result_array = Matrix.spl(regression_system);
-        float func_result = 0;
+        double func_result = 0;
         for (int i = 0; i < result_array.length; ++i) {
             if (i == 0) {
-                func_result += Float.parseFloat(result_array[i]);
+                func_result += Double.parseDouble(result_array[i]);
             }
             else {
-                func_result += Float.parseFloat(result_array[i]) * estimate_list[i - 1];
+                func_result += Double.parseDouble(result_array[i]) * estimate_list[i - 1];
             }
         }
 

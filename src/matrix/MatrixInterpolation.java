@@ -4,7 +4,7 @@ import java.lang.*;
 
 public class MatrixInterpolation {
 
-    public static Object[] createPolynomial(Matrix point_matrix, float num) {
+    public static Object[] createPolynomial(Matrix point_matrix, double num) {
         int row_size = point_matrix.row;
         int column_size = point_matrix.row + 1;
         Matrix poly_system = Matrix.createMtr(row_size, column_size);
@@ -15,21 +15,21 @@ public class MatrixInterpolation {
                     poly_system.contents[i][j] = point_matrix.contents[i][1];
                 }
                 else {
-                    poly_system.contents[i][j] = (float) Math.pow(point_matrix.contents[i][0], j);
+                    poly_system.contents[i][j] = (double) Math.pow(point_matrix.contents[i][0], j);
                 }
             }
         }
 
         String[] result_array = Matrix.spl(poly_system);
         StringBuilder result = new StringBuilder();
-        float func_result = 0;
+        double func_result = 0;
 
         for (int i = 0; i < result_array.length; ++i) {
             result.append(result_array[i]).append("x^").append(i);
             if (i != row_size - 1) {
                 result.append(" + ");
             }
-            func_result += Float.parseFloat(result_array[i]) * (float) Math.pow(num, i);
+            func_result += Double.parseDouble(result_array[i]) * (double) Math.pow(num, i);
         }
 
         String func_string = "f(" + num + ") = " + func_result;

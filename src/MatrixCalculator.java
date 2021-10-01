@@ -215,7 +215,7 @@ public class MatrixCalculator {
                     }
 
                     System.out.println();
-                    float det = Matrix.determinant(m);
+                    double det = Matrix.determinant(m);
                     int output_choice = outputMenu();
                     System.out.println();
 
@@ -226,7 +226,7 @@ public class MatrixCalculator {
                 }
                 case 2 -> {
                     int input_choice = inputMenu();
-                    float hasildet = 0;
+                    double hasildet = 0;
                     switch (input_choice){
                         case 1 ->{
                             System.out.print("Please input a square matrix (row = col) \n\n");
@@ -353,7 +353,7 @@ public class MatrixCalculator {
             case 1 -> {
                 Object[] matrix_pair = MatrixTerminal.readInterpolationTerminal();
                 Matrix point_matrix = (Matrix) matrix_pair[0];
-                float num = (float) matrix_pair[1];
+                double num = (double) matrix_pair[1];
 
                 Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
                 result = result_pair[0].toString();
@@ -362,7 +362,7 @@ public class MatrixCalculator {
             case 2 -> {
                 Object[] matrix_pair = MatrixFile.readInterpolationFile();
                 Matrix point_matrix = (Matrix) matrix_pair[0];
-                float num = (float) matrix_pair[1];
+                double num = (double) matrix_pair[1];
 
                 Object[] result_pair = MatrixInterpolation.createPolynomial(point_matrix, num);
                 result = result_pair[0].toString();
@@ -379,21 +379,21 @@ public class MatrixCalculator {
     }
 
     private static void regressionMenu() {
-        float estimate_result = 0;
+        double estimate_result = 0;
         int input_choice = inputMenu();
 
         switch (input_choice) {
             case 1 -> {
                 Object[] regression_pair = MatrixTerminal.readRegressionTerminal();
                 Matrix point_list = (Matrix) regression_pair[0];
-                float[] estimate_list = (float[]) regression_pair[1];
+                double[] estimate_list = (double[]) regression_pair[1];
 
                 estimate_result = MatrixRegression.calcEstimation(point_list, estimate_list);
             }
             case 2 -> {
                 Object[] regression_pair = MatrixFile.readRegressionFile();
                 Matrix point_list = (Matrix) regression_pair[0];
-                float[] estimate_list = (float[]) regression_pair[1];
+                double[] estimate_list = (double[]) regression_pair[1];
 
                 estimate_result = MatrixRegression.calcEstimation(point_list, estimate_list);
 

@@ -19,7 +19,7 @@ public class MatrixTerminal {
         System.out.println("Input matrix: ");
         for (int i = 0; i < row_size; ++i) {
             for (int j = 0; j < column_size; ++j) {
-                float element = input.nextFloat();
+                double element = input.nextDouble();
                 matrix.contents[i][j] = element;
             }
         }
@@ -51,13 +51,13 @@ public class MatrixTerminal {
         System.out.println("Input points: ");
         for (int i = 0; i < point_count; ++i) {
             for (int j = 0; j < 2; ++j) {
-                float element = input.nextFloat();
+                double element = input.nextDouble();
                 point_matrix.contents[i][j] = element;
             }
         }
 
         System.out.print("Input value to be estimated: ");
-        float num = input.nextFloat();
+        double num = input.nextDouble();
 
         return new Object[] {point_matrix, num};
     }
@@ -78,22 +78,22 @@ public class MatrixTerminal {
         System.out.println("Input values: ");
         for (int i = 0; i < data_count; ++i) {
             for (int j = 0; j < var_count; ++j) {
-                float element = input.nextFloat();
+                double element = input.nextDouble();
                 point_list.contents[i][j] = element;
             }
         }
 
-        float[] estimate_list = new float[var_count - 1];
+        double[] estimate_list = new double[var_count - 1];
         System.out.println("Input values to be estimated: ");
         for (int i = 0; i < var_count - 1; ++i) {
-            float element = input.nextFloat();
+            double element = input.nextDouble();
             estimate_list[i] = element;
         }
 
         return new Object[] {point_list, estimate_list};
     }
 
-    public static void displayRegressionTerminal(float estimate_result) {
+    public static void displayRegressionTerminal(double estimate_result) {
         System.out.printf("Estimation result = %f\n", estimate_result);
         System.out.println();
     }
@@ -112,7 +112,7 @@ public class MatrixTerminal {
         }
     }
     
-    public static void displayDetTerminal (float det) {
+    public static void displayDetTerminal (double det) {
         System.out.printf("Determinant = %f", det);
         System.out.println();
     }
