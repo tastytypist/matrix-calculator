@@ -30,3 +30,7 @@ matrixcalculator
 │   └── MatrixCalculator         # Contains the main program
 └── test                         # Contains test cases
 ```
+
+## Setup
+1. Go to folder bin using ```cd bin```
+2. Run the calculator using ```java MatrixCalculator```
