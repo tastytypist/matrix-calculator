@@ -149,24 +149,27 @@ public class Matrix {
         Matrix mCpy;
         double[] det = new double[1];
         i = 0;
-        while ((i < m.row) && !isZeroRow(m, i)) {
-            i++;
-        }
-        if (i < m.row) { // terdapat baris yang semua elemennya bernilai nol
-            det[0] = 0;
-        }
-        else { 
-            det[0] = 1;
-            mCpy = copyMtr(m);
-            segitigaAtas(mCpy, det);
-            for (i = 0; i < mCpy.row; ++i) {
-                det[0] *= mCpy.contents[i][i];
+        if (m.col >= m.row){
+            while ((i < m.row) && !isZeroRow(m, i)) {
+                i++;
             }
+            if (i < m.row) { // terdapat baris yang semua elemennya bernilai nol
+                det[0] = 0;
+            }
+            else { 
+                det[0] = 1;
+                mCpy = copyMtr(m);
+                segitigaAtas(mCpy, det);
+                for (i = 0; i < mCpy.row; ++i) {
+                    det[0] *= mCpy.contents[i][i];
+                }
+            }
+            if (det[0] == -0) {
+                det[0] = 0;
+            }
+            return det[0];
         }
-        if (det[0] == -0) {
-            det[0] = 0;
-        }
-        return det[0];
+        else return det[0] = 0;
     }
 
     static boolean isZeroRow (Matrix m, int i) {
