@@ -51,7 +51,7 @@ public class Matrix {
         j = 0;
         is_zero = true;
         while ((j < m.col) && is_zero) {
-            if (Math.round(m.contents[i][j] * scale) == 0) {
+            if (Math.round(m.contents[i][j] * scale) / scale == 0) {
                 count_zero++;
                 j++;
             }
@@ -349,7 +349,7 @@ public class Matrix {
                 c = m.contents[i][j];
                 for (k = 0; k < m.col; ++k) {
                     m.contents[i][k] /= c;
-                    if (Math.round(m.contents[i][k] * scale) == 0) {
+                    if (Math.round(m.contents[i][k] * scale) / scale == 0) {
                         m.contents[i][k] = 0;
                     }
                 }
@@ -371,7 +371,7 @@ public class Matrix {
                         c = m.contents[n][j]/m.contents[i][j];
                         for (k = 0; k < m.col; ++k) {
                             m.contents[n][k] -= c * m.contents[i][k];
-                            if (Math.round(m.contents[n][k] * scale) == 0) {
+                            if (Math.round(m.contents[n][k] * scale) / scale == 0) {
                                 m.contents[n][k] = 0;
                             }
                         }
