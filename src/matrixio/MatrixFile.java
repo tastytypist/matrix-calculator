@@ -22,7 +22,7 @@ public class MatrixFile {
         }
 
         try {
-            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
+            String file_path = new File("..\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
@@ -100,7 +100,7 @@ public class MatrixFile {
 
         double num = 0;
         try {
-            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
+            String file_path = new File("..\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
@@ -160,7 +160,7 @@ public class MatrixFile {
         Matrix point_list = new Matrix();
         double[] estimate_list = new double[0];
         try {
-            String file_path = new File(".\\test\\" + file_name).getCanonicalPath();
+            String file_path = new File("..\\test\\" + file_name).getCanonicalPath();
             File file = new File(file_path);
             Scanner file_input = new Scanner(file);
 
@@ -219,7 +219,7 @@ public class MatrixFile {
     }
 
     private static File ensureDirectoriesExist() throws IOException {
-        String folder_path = new File(".\\out\\").getCanonicalPath();
+        String folder_path = new File("..\\out\\").getCanonicalPath();
         File folder = new File(folder_path);
         if (!folder.exists()) {
             if (!folder.mkdir()) {
@@ -237,7 +237,7 @@ public class MatrixFile {
                 file_name = file_name + suffix;
             }
 
-            String file_path = new File(".\\out\\" + file_name).getCanonicalPath();
+            String file_path = new File("..\\out\\" + file_name).getCanonicalPath();
             file = new File(file_path);
             if (file.createNewFile()) {
                 break;
